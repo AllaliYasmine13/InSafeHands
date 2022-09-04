@@ -3,11 +3,16 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
+use App\Models\Permission;
+use App\Models\Role;
+use App\Models\User;
 use App\models\PatientsAgees;
+use Livewire\WithPagination;
 
 class PatientsComponent extends Component
 {
-
+    use WithPagination;
+    protected $paginationTheme = "bootstrap";
     public $patient_id, $nom_prenom, $date, $poid, $taille, $maladie_chronique,$adresse, $telephone, $email, $medecin_traitant, $adressee_par, $assurance_maladie, $nom_contact_urgence, $tel_contact_urgence , $patient_edit_id, $patient_delete_id;
     public $view_patient_id, $view_patient_nom_prenom, $view_patient_date, $view_patient_poid, $view_patient_taille, $view_patient_maladie_chronique,$view_patient_adresse, $view_patient_telephone, $view_patient_email, $view_patient_medecin_traitant, $view_patient_adressee_par, $view_patient_assurance_maladie, $view_patient_nom_contact_urgence, $view_patient_tel_contact_urgence;
     public $searchTerm;
@@ -270,17 +275,20 @@ public function cancel()
         $this->view_patient_nom_contact_urgence = '';
         $this->view_patient_tel_contact_urgence= '';
     }
-    
 
     // end view utilisateur
-
-
 
     public function render()
     {
         // get All Patients agées
         $patients= PatientsAgees::where('nom_prenom','like','%'.$this->searchTerm.'%')->orWhere('patient_id','like','%'.$this->searchTerm.'%')->orWhere('date','like','%'.$this->searchTerm.'%')->get();
 
-        return view('livewire.patients-component',['patients'=>$patients])->layout('livewire.layouts.base1');
+        return view('livewire.patients-component',[
+            'patients'=>$patients,
+            'patients'=>PatientsAgees::paginate(4)
+
+            ])->layout('livewire.layouts.base1')
+              ->extends("layouts.master")
+              ->section("contenu");
     }
 }

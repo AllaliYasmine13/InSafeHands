@@ -24,14 +24,14 @@ function setMenuClass($route, $classe){
     return "";
 }
 
-// function setMenuActive($route){
-//     $routeActuel = request()->route()->getName();
+function setMenuActive($route){
+    $routeActuel = request()->route()->getName();
 
-//     if($routeActuel === $route ){
-//         return "active";
-//     }
-//     return "";
-// }
+    if($routeActuel === $route ){
+         return "active";
+     }
+     return "";
+ }
 
 function contains($container, $contenu){
     return Str::contains($container, $contenu);

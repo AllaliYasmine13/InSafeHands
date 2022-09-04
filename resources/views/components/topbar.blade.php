@@ -26,7 +26,7 @@
                                           onclick="event.preventDefault(); localStorage.clear();  document.getElementById('logout-form').submit();">
                                        <i class="fa fa-sign-out"></i> Logout 
                                        </a>
-                                        <form id="logout-form" action="{{ url('/logout') }}"     method="POST" class="d-none">
+                                        <form id="logout-form" action="{{ url('/logout') }}" method="POST" class="d-none">
                                          {{ csrf_field() }}
                                         </form>
                                     </div>

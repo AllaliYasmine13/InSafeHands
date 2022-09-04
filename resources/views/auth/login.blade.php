@@ -9,12 +9,12 @@
                         @csrf
                         <fieldset>
                            <div class="field">
-                              <label class="label_field">Email Address</label>
-                              <input type="email" name="email" placeholder="E-mail"
+                              <label class="label_field"><i class="fa fa-envelope fa-lg fa-fw green_color"></i></label>
+                              <input type="email" name="email" placeholder="Email Address"
                               class="form-control @error('email') is-invalid @enderror" value="{{ old('email') }}" required autocomplete="email" autofocus />
                            </div>
                            <div class="field">
-                              <label class="label_field">Password</label>
+                              <label class="label_field"><i class="fa fa-lock fa-lg fa-fw green_color"></i></label>
                               <input type="password" name="password" placeholder="Password"
                                class="form-control" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password" />
             

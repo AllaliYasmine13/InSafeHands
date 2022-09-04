@@ -69,9 +69,10 @@ class Kernel extends HttpKernel
         'patient'=> \App\Http\Middleware\Patient::class,
         'role'=> \App\Http\Middleware\EnsureUserHasRole::class,
 
-        'auth.admin'=> \App\Http\Middleware\AdminMiddleware::class,
-        'auth.secretaire'=> \App\Http\Middleware\SecretaireMiddleware::class,
-        'auth.medecin'=> \App\Http\Middleware\MedecinMiddleware::class,
-        'auth.patient'=> \App\Http\Middleware\PatientMiddleware::class,
+        'auth.Admin'=> \App\Http\Middleware\AdminMiddleware::class,
+        'auth.Secretaire'=> \App\Http\Middleware\SecretaireMiddleware::class,
+        'auth.Medecin'=> \App\Http\Middleware\MedecinMiddleware::class,
+        'auth.Patient'=> \App\Http\Middleware\PatientMiddleware::class,
+        'auth.Medecin_Coordinateur'=> \App\Http\Middleware\MedecinCoordinateurMiddleware::class,
     ];
 }

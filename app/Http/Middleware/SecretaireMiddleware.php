@@ -17,7 +17,7 @@ class SecretaireMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        if(Gate::allows("secretaire")){
+        if(Gate::allows("Secretaire")){
             return $next($request);
         }
        return redirect()->route("dashboard");

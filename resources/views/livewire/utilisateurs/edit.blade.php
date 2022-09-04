@@ -123,7 +123,7 @@
             <div class="col-md-12 mt-4">
                 <div class="card card-primary">
                     <div class="dash_head">
-                       <h3><span><i class="fa fa-gears"></i>  Roles & permissions</span><button class="btn btn-success" wire:click="updateRoleAndPermissions"><i class="fa fa-check"></i>   Appliquer les Modifications</button></h3>                   
+                       <h3><span><i class="fa fa-gears"></i>  Roles & permissions</span><button class="btn btn-success mt-3" wire:click="updateRoleAndPermissions"><i class="fa fa-check"></i>  Appliquer les Modifications</button></h3>                   
                        
                     </div>
                     <!-- /.card-header -->

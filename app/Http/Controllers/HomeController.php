@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
 
 class HomeController extends Controller
 {
@@ -34,11 +35,5 @@ class HomeController extends Controller
         return view ('gestion_des_rdvs');
     }// end method
 
-    public function EditProfile(){
-        return view ('profile.edit_profile');
-    }// end method
-
-    public function EditPassword(){
-        return view ('profile.change_password');
-    }// end method
+    
 }

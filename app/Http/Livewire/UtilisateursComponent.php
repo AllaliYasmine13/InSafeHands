@@ -209,8 +209,8 @@ public function cancel()
         $utilisateurs= Utilisateurs::where('nom','like','%'.$this->searchTerm.'%')->orWhere('prenom','like','%'.$this->searchTerm.'%')->orWhere('utilisateur_id','like','%'.$this->searchTerm.'%')->orWhere('date_de_naissance','like','%'.$this->searchTerm.'%')->get();
 
         return view('livewire.utilisateurs-component',[
-            // 'utilisateurs'=>$utilisateurs,
-            'utilisateurs'=> Utilisateurs::paginate(3)
+            'utilisateurs'=>$utilisateurs,
+            // 'utilisateurs'=> Utilisateurs::paginate(3)
 
             ])->layout('livewire.layouts.base');
     }

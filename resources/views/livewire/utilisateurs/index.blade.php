@@ -8,15 +8,15 @@
 
 <div wire:ignore.self>
 
-     @if($currentPage == PAGECREATEFORM)
+    @if($currentPage == PAGECREATEFORM)
          @include("livewire.utilisateurs.create")
     @endif 
 
-     @if($currentPage == PAGEEDITFORM)
+    @if($currentPage == PAGEEDITFORM)
         @include("livewire.utilisateurs.edit")
-     @endif 
+    @endif 
 
-     @if($currentPage == PAGELIST)
+    @if($currentPage == PAGELIST)
         @include("livewire.utilisateurs.liste")
     @endif
 

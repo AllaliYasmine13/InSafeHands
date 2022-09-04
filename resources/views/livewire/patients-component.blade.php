@@ -1,11 +1,11 @@
 <div>
-    <div class="container mt-5">
+<div class="container mt-5">
     <div class="row">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header">
-                        <h5 style="float: left;"><strong> La Liste des Patients Agées</strong></h5>
-                        <button class="btn btn-sm btn-primary" style="float: right;" data-toggle="modal" data-target="#addPatientModal"><i class="fa fa-user-plus"></i> Ajouter Patient</button>
+                    <div class="dash_head">
+                        <h3 style="float: left;"><span><i class="fa fa-user-plus fa-2x"></i><b style="font-weight:bold;"><font size="+2"> La Liste des Patients Agées </font></b></span></h3>
+                        <button class="main_bt read_bt" style="float: right;" data-toggle="modal" data-target="#addPatientModal"><i class="fa fa-plus"></i><b style="font-weight:bold;"> Ajouter Patient</button>
                         {{-- <button class="btn btn-success btn-sm" style="float: right;" data-toggle="modal" data-target="#"> <i class="fas fa-table"></i> Exporter</button>
                         <button class="btn btn-secondary btn-sm" style="float: right;" data-toggle="modal" data-target="#"> <i class="fas fa-print"></i> Imprimer</button> --}}
                     </div>
@@ -18,21 +18,22 @@
 
                         <div class = "row mb-3">
                             <div class="col-md-12">
+                                <label style="float:right;"><i class="fa fa-search orange_color"></i></label>
                                 <input type="search" class="form-control w-25" placeholder="search" wire:model="searchTerm"
                                 style="float:right;"/>
                            </div>
                         </div>
 
-                                        <!-- Table des patients agées-->
+                <!-- Table des patients agées-->
 
-                     <table class="table table-bordered">
+                     <table class="table table-striped">
                             <thead>
                                 <tr>
-                                    <th>ID</th>
-                                    <th>Nom Prenom </th>
-                                    <th>Date de Naissance</th>                
-                                    <th>Ajouté</th>                                                                    
-                                    <th style="text-align: center;">Action</th>
+                                    <th><b style="font-weight:bold;">ID</b></b></th>
+                                    <th><b style="font-weight:bold;">Nom Prenom</b></th>
+                                    <th><b style="font-weight:bold;">Date de Naissance</b></th>                
+                                    <th><b style="font-weight:bold;">Ajouté</b></th>                                                                    
+                                    <th style="text-align: center;"><b style="font-weight:bold;">Action</b></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -41,39 +42,39 @@
                                         <tr>
                                             <td>{{ $patient->patient_id }}</td>
                                             <td>{{ $patient->nom_prenom }}</td>
-                                            <td>{{ $patient->date }}</td>                                            
-                                            <td>{{ $patient->created_at }}</td>
-                                                                                      
-                                            <td style="text-align: center;">
-                                                <button class="btn btn-sm btn-secondary" wire:click="viewPatientDetails({{ $patient->id }})">View</button>
-                                                <button class="btn btn-sm btn-primary" wire:click="editPatient({{ $patient->id }})">Edit</button>
-                                                <button class="btn btn-sm btn-danger" wire:click="deleteConfirmation({{ $patient->id }})">Delete</button>
-                                            </td>
+                                            <td>{{ $patient->date }}</td>  
+                                            <td class="text-align: center;"><span class="tag tag-success">{{$patient->created_at->diffForHumans()}}</span></td>                                          
+                                            {{-- <td>{{ $patient->created_at }}</td> --}}
 
+                                            <td style="text-align:center;">
+                                                <button class="btn btn-sm btn-link" wire:click="viewPatientDetails({{ $patient->id }})"> <i class="fa fa-info-circle fa-2x green_color"></i> </button>
+                                                <button class="btn btn-sm btn-link" wire:click="editPatient({{ $patient->id }})"> <i class="fa fa-edit fa-2x blue2_color"></i> </button>
+                                                <button class="btn btn-sm btn-link" wire:click="deleteConfirmation({{ $patient->id }})"> <i class="fa fa-trash-o fa-2x orange_color"></i> </button>
+                                            </td>                                         
                                         </tr>
                                     @endforeach
                                
                                 @endif
                             </tbody>
                         </table>
-
+                   </div>
+                   <div class="card-footer">
+                        <div class="float-right">
+                            {{ $patients->links() }} 
+                        </div>
+                    </div>
                 <!-- end table des patients agées-->
-
-                   </div> 
-
-                </div>
-            </div>
    </div>              
 </div>
    
 
     <!-- Modal -->
     <!-- add utilisateur-->
-    <div wire:ignore.self class="modal fade" id="addPatientModal" tabindex="-1" data-backdrop="static" data-keyboard="false" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
-        <div class="modal-dialog" role="document">
+    <div wire:ignore.self class="modal fade bd-example-modal-lg bd-example-modal-lg" id="addPatientModal" tabindex="-1" data-backdrop="static" data-keyboard="false" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Add New Patient Agé</h5>
+                    <h5 class="modal-title"><i class="fa fa-user-plus"></i>  Add New Patient Agé</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -221,8 +222,6 @@
                                 @enderror
                             </div>
                         </div>
-
-
                         <div class="form-group row">
                             <label for="" class="col-3"></label>
                             <div class="col-9">
@@ -231,8 +230,6 @@
                         </div>
                     </form>
                 </div>
-              
-
            </div>
        </div>
    </div>
@@ -240,8 +237,8 @@
 
 <!-- Edit patient-->
 
-<div wire:ignore.self class="modal fade" id="editPatientModal" tabindex="-1" data-backdrop="static" data-keyboard="false" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
-        <div class="modal-dialog" role="document">
+<div wire:ignore.self class="modal fade bd-example-modal-lg" id="editPatientModal" tabindex="-1" data-backdrop="static" data-keyboard="false" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">Edit Patient Agé</h5>
@@ -412,8 +409,8 @@
 <!-- delete patient-->
 
 
-<div wire:ignore.self class="modal fade" id="deletePatientModal" tabindex="-1" data-backdrop="static" data-keyboard="false" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
-        <div class="modal-dialog" role="document">
+<div wire:ignore.self class="modal fade bd-example-modal-lg" id="deletePatientModal" tabindex="-1" data-backdrop="static" data-keyboard="false" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">Delete Confirmation</h5>
@@ -436,8 +433,8 @@
 
 <!-- view patient-->
 
-<div wire:ignore.self class="modal fade" id="viewPatientModal" tabindex="-1" data-backdrop="static" data-keyboard="false" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
-        <div class="modal-dialog" role="document">
+<div wire:ignore.self class="modal fade bd-example-modal-lg" id="viewPatientModal" tabindex="-1" data-backdrop="static" data-keyboard="false" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">Patient Agé Information</h5>
@@ -452,7 +449,6 @@
                                 <th>ID: </th>
                                 <td>{{ $view_patient_id }}</td>
                             </tr>
-
 
                             <tr>
                                 <th>Nom Prenom: </th>
@@ -523,8 +519,6 @@
         </div>
     </div>
 </div>
-
-
 
 <!-- end view utilisateur-->
 </div>

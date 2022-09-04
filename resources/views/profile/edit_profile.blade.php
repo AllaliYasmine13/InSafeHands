@@ -12,98 +12,123 @@
     </div>
 </div>
 
-<!-- row -->
-{{-- <div class="row column1">
-      <div class="col-md-2"></div>
-            <div class="col-md-8">
-                <div class="white_shd full margin_bottom_30">
-                    <div class="full graph_head">
-                        <div class="heading1 margin_0">
-                            <h2>My profile</h2>
-                        </div>
-                    </div>
-            
-<div class="full price_table padding_infor_info">
-      <div class="row"> --}}
-          <!-- user profile section --> 
-             <!-- profile image -->
-                {{-- <div class="col-lg-12">
-                    <div class="full dis_flex center_text">
-                        <div class="profile_img"><img width="150" class="rounded-circle" src="{{ asset('images/layout_img/t2.jpg')}}"  /></div>
-                            <div class="profile_contant">
-                                <div class="contact_inner">
-                                     <h3><strong><b style="font-weight:bold;"> User Profile : </b></strong> {{ userFullName() }}</h3>
-                                     <p><strong><b style="font-weight:bold;"> User Role : </b></strong> {{ getRolesName() }}</p>
-                                     <ul class="list-unstyled">
-                                     <li></i><strong><b style="font-weight:bold;"> User Email : </b></strong> {{ usergetEmail() }}</li>                                               
-                                     </ul>
-                                </div>
-                            </div>
-                       </div>
-                   </div>
+ <!-- Content Header (Page header) -->
+    {{-- <section class="content-header">
+        <div class="container-fluid">
+         
+        </div><!-- /.container-fluid -->
+      </section> --}}
+  
+      <!-- Main content -->
+      <section class="content">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-3">
+  
+              <!-- Profile Image -->
+              <div class="card card-primary card-outline">
+                <div class="card-body box-profile">
+                  <div class="text-center">
+                    <img class="profile-user-img img-fluid img-circle admin_picture" src="{{asset('images/layout_img/doc.png')}}" alt="User profile picture">
+                  </div>
+  
+                  <h3 class="profile-username text-center admin_name">{{ userFullName() }}</h3>
+  
+                  <p class="text-muted text-center">{{ getRolesName()}}</p>
+
+                  <input type="file" name="admin_image" id="admin_image" style="opacity: 0;height:1px;display:none">
+                  <a href="javascript:void(0)" class="btn btn-primary btn-block" id="change_picture_btn"><b>Change picture</b></a>
+                  
                 </div>
-       </div> --}}
+                <!-- /.card-body -->
+              </div>
+              <!-- /.card -->
+  
+          
+            </div>
+            <!-- /.col -->
+            <div class="col-md-9">
+              <div class="card">
+                <div class="card-header p-2">
+                  <ul class="nav nav-pills">
+                    <li class="nav-item"><a class="nav-link active" href="#personal_info" data-toggle="tab">Personal Information</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#change_password" data-toggle="tab">Change Password</a></li>
+                  </ul>
+                </div><!-- /.card-header -->
+                <div class="card-body">
+                  <div class="tab-content">
+                    <div class="active tab-pane" id="personal_info">
+                      <form class="form-horizontal" method="POST" action="{{route('edit_profile')}}" id="AdminInfoForm">
+                        <div class="form-group row">
+                          <label for="inputName" class="col-sm-2 col-form-label"><b style="font-weight:bold;"> Name :</b></label>
+                          <div class="col-sm-10">
+                            <input type="text" class="form-control" id="inputName" placeholder="Name" value="{{ Auth::user()->name }}" name="name">
 
-        <!-- Modal content-->
-        <div class="modal-content">
-            {{-- <div class="modal-header">
-                <h5 class="modal-title">Edit Profile</h5>
-            </div> --}}
-            <form method="POST" id="editProfileForm" enctype="multipart/form-data">
-                {{-- <div class="alert alert-info">
-                    Note : Your Profile Has been Updating Succefully!
-                </div> --}}
-                <div class="modal-body">
-                    <div class="alert alert-danger d-none" id="editProfileValidationErrorsBox"></div>
-                    <input type="hidden" name="user_id" id="pfUserId">
-                    <input type="hidden" name="is_active" value="1">
-                    {{csrf_field()}}
-                    <div class="row">
-                    <div class="form-group col-sm-6 d-flex">
-                            <div class="col-sm-4 col-md-6 pl-0 form-group">
-                                <label>Profile Image:</label>
-                                <br>
-                                <label
-                                        class="image__file-upload btn btn-primary text-white"
-                                        tabindex="2"> Choose
-                                    <input type="file" name="photo" id="pfImage" class="d-none">
-                                </label>
+                            <span class="text-danger error-text name_error"></span>
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <label for="inputEmail" class="col-sm-2 col-form-label"><b style="font-weight:bold;"> Email :</b></label>
+                          <div class="col-sm-10">
+                            <input type="text" class="form-control" id="inputEmail" placeholder="Email" value="{{ Auth::user()->email }}" name="email">
+                            <span class="text-danger error-text email_error"></span>
+                          </div>
+                        </div>
+                        {{-- <div class="form-group row">
+                          <label for="inputName2" class="col-sm-2 col-form-label">Favorite Color</label>
+                          <div class="col-sm-10">
+                            <input type="text" class="form-control" id="inputName2" placeholder="Favorite color" value="{{ Auth::user()->favoriteColor }}" name="favoritecolor">
+                            <span class="text-danger error-text favoritecolor_error"></span>
+                          </div>
+                        </div> --}}
+                        <div class="form-group row">
+                          <div class="offset-sm-2 col-sm-10">
+                            <button type="submit" class="btn btn-danger">Save Changes</button>
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+                    <!-- /.tab-pane -->
+                    <div class="tab-pane" id="change_password">
+                        <form class="form-horizontal" action="" method="POST" id="changePasswordAdminForm">
+                          <div class="form-group row">
+                            <label for="inputName" class="col-sm-2 col-form-label">Old Passord</label>
+                            <div class="col-sm-10">
+                              <input type="password" class="form-control" id="inputName" placeholder="Enter current password" name="oldpassword">
+                              <span class="text-danger error-text oldpassword_error"></span>
                             </div>
-                            <div class="col-sm-3 preview-image-video-container float-right mt-1">
-                                <img id='edit_preview_photo'
-                                     class="img-thumbnail user-img user-profile-img profilePicture"
-                                     src="{{asset('images/layout_img/user.png')}}"/>
+                          </div>
+                          <div class="form-group row">
+                            <label for="inputName2" class="col-sm-2 col-form-label">New Password</label>
+                            <div class="col-sm-10">
+                              <input type="password" class="form-control" id="newpassword" placeholder="Enter new password" name="newpassword">
+                              <span class="text-danger error-text newpassword_error"></span>
                             </div>
-                        </div>
-                        <div class="form-group col-sm-12">
-                            <label>Name:</label><span class="required">*</span>
-                            <input type="text" name="name" id="pfName" class="form-control" required autofocus
-                                   tabindex="1">
-                        </div>
-                        
-                    </div>
-                    <div class="row">
-                        <div class="form-group col-sm-12">
-                            <label>Email:</label><span class="required">*</span>
-                            <input type="text" name="email" id="pfEmail" class="form-control" required tabindex="3">
-                        </div>
-                    </div>
-                    <div class="text-right">
-                        <button type="submit" class="btn btn-primary" id="btnPrEditSave"
-                                data-loading-text="<span class='spinner-border spinner-border-sm'></span> Processing..."
-                                tabindex="5">Save
-                        </button>
-                        <button type="button" class="btn btn-light ml-1 edit-cancel-margin margin-left-5"
-                                data-dismiss="modal">Cancel
-                        </button>
-                    </div>
-                </div>
-            </form>
-        </div>
-
-</div>
-      </div>
-</div>
-      </div>
-
+                          </div>
+                          <div class="form-group row">
+                            <label for="inputName2" class="col-sm-2 col-form-label">Confirm New Password</label>
+                            <div class="col-sm-10">
+                              <input type="password" class="form-control" id="cnewpassword" placeholder="ReEnter new password" name="cnewpassword">
+                              <span class="text-danger error-text cnewpassword_error"></span>
+                            </div>
+                          </div>
+                          <div class="form-group row">
+                            <div class="offset-sm-2 col-sm-10">
+                              <button type="submit" class="btn btn-danger">Update Password</button>
+                            </div>
+                          </div>
+                        </form>
+                      </div>
+                  </div>
+                  <!-- /.tab-content -->
+                </div><!-- /.card-body -->
+              </div>
+              <!-- /.card -->
+            </div>
+            <!-- /.col -->
+          </div>
+          <!-- /.row -->
+        </div><!-- /.container-fluid -->
+      </section>
+      <!-- /.content -->
 @endsection

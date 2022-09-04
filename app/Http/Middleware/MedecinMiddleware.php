@@ -17,7 +17,7 @@ class MedecinMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        if(Gate::allows("medecin")){
+        if(Gate::allows("Medecin")){
             return $next($request);
         }
        return redirect()->route("dashboard");

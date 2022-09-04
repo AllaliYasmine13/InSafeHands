@@ -102,11 +102,11 @@
                         @csrf
                         <fieldset>
                            <div class="field">
-                              <label class="label_field">Email Address</label>
-                              <input type="email" name="email" placeholder="E-mail" />
-                           </div>
+                              <label class="label_field col-12"><i class="fa fa-envelope fa-lg fa-fw green_color"></i></label>
+                              <input type="email" name="email" placeholder="Email Address" />
+                           </div> 
                            <div class="field">
-                              <label class="label_field">Password</label>
+                              <label class="label_field col-12"><i class="fa fa-lock fa-lg fa-fw green_color"></i></label>
                               <input type="password" name="password" placeholder="Password" />
                            </div>
                            <div class="field">

@@ -42,6 +42,7 @@ class Utilisateurs extends Component
         return view('livewire.utilisateurs.index', [
             "users" => User::paginate(3)
         ])
+        ->layout("livewire.utilisateurs.index")
         ->extends("layouts.master")
         ->section("contenu");
     }

@@ -40,6 +40,7 @@ class clientComp extends Component
         return view('livewire.patients_agees.index', [
             "clients" => $query->latest()->paginate(5)
         ])
+        ->layout("livewire.patients_agees.index")
         ->extends("layouts.master")
         ->section("contenu");
     }

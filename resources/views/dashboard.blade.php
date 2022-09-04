@@ -10,22 +10,22 @@
     </div>
 </div>
                     <!-- Admin -->
-                    @can("admin")
+                    @can("Admin")
                       <x-admin_dashboard/>  
                     @endcan
 
                     <!--secretaire  -->
-                    @can("secretaire")
+                    @can("Secretaire")
                        <x-secretaire_dashboard/>
                     @endcan
 
                     <!-- medecin -->
-                    @can("medecin")
+                    @can("Medecin")
                        <x-medecin_dashboard/>  
                     @endcan
 
                    <!--patient-->
-                   @can("patient")
+                   @can("Patient")
                        <x-patient_dashboard/>   
                   @endcan
 @endsection

@@ -6,7 +6,6 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\User;
 use App\Models\Patient;
-use App\Models\Client;
 
 class DatabaseSeeder extends Seeder
 {
@@ -26,6 +25,7 @@ class DatabaseSeeder extends Seeder
          User::find(2)->roles()->attach(2);
          User::find(3)->roles()->attach(3);
          User::find(4)->roles()->attach(4);
+         User::find(5)->roles()->attach(5);
 
         //  \App\Models\Patient::factory(10)->create();
 

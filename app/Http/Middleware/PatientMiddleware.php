@@ -17,7 +17,7 @@ class PatientMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        if(Gate::allows("patient")){
+        if(Gate::allows("Patient")){
             return $next($request);
         }
        return redirect()->route("dashboard");

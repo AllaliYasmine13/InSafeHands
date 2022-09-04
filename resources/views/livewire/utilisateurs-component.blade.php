@@ -79,8 +79,8 @@
 
     <!-- Modal -->
     <!-- add utilisateur-->
-    <div wire:ignore.self class="modal fade" id="addUtilisateurModal" tabindex="-1" data-backdrop="static" data-keyboard="false" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
-        <div class="modal-dialog" role="document">
+    <div wire:ignore.self class="modal fade bd-example-modal-lg" id="addUtilisateurModal" tabindex="-1" data-backdrop="static" data-keyboard="false" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">Add New Utilisateur</h5>
@@ -90,7 +90,7 @@
                 </div>
 
                 <div class="modal-body ">
-                <form wire:submit.prevent="storeUtilisateurData">
+                <form wire:submit.prevent="storeUtilisateurData" enctype="multipart/form-data">
                     <div class="form-group row">
                             <label for="utilisateur_id" class="col-3">Utilisateur ID</label>
                             <div class="col-9">
@@ -100,7 +100,19 @@
                                 @enderror
                             </div>
                         </div>
-
+                   <!---->
+                   {{-- <div class="d-flex"> --}}
+                        <div class="form-group mb-3">
+                            <label for="photo">Image</label>
+                            <input type="file" name="photo" wire:model="" class="form-control">
+                        </div>
+                        {{-- <div class="form-group flex-grow-1">
+                            <label >Prenom</label>
+                            <input type="text" wire:model="" class="form-control">
+                        </div>
+                        
+                    </div> --}}
+                    <!---->
 
                         <div class="form-group row">
                             <label for="nom" class="col-3">Nom</label>
@@ -131,7 +143,32 @@
                                 @enderror
                             </div>
                         </div>
+<!---->
+                {{-- <div class="form-group">
+                    <label >Sexe</label>
+                    <select class="form-control @error('newUser.sexe') is-invalid @enderror" wire:model="newUser.sexe">
+                        <option value="">---------</option>
+                        <option value="H">Homme</option>
+                        <option value="F">Femme</option>
+                    </select>
+                    @error("newUser.sexe")
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                  </div>
 
+                  <div class="form-group">
+                    <label >Piece d'identité</label>
+                    <select class="form-control @error('newUser.pieceIdentite') is-invalid @enderror" wire:model="newUser.pieceIdentite">
+                        <option value="">---------</option>
+                        <option value="CNI">CNI</option>
+                        <option value="PASSPORT">PASSPORT</option>
+                        <option value="PERMIS DE CONDUIRE">PERMIS DE CONDUIRE</option>
+                    </select>
+                    @error("newUser.pieceIdentite")
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
+                  </div> --}}
+<!---->
 
                         <div class="form-group row">
                             <label for="email" class="col-3">Email</label>
@@ -171,8 +208,8 @@
 
 <!-- Edit utilisateur-->
 
-<div wire:ignore.self class="modal fade" id="editUtilisateurModal" tabindex="-1" data-backdrop="static" data-keyboard="false" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
-        <div class="modal-dialog" role="document">
+<div wire:ignore.self class="modal fade bd-example-modal-lg" id="editUtilisateurModal" tabindex="-1" data-backdrop="static" data-keyboard="false" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">Edit Utilisateur</h5>
@@ -266,8 +303,8 @@
 <!-- delete utilisateur-->
 
 
-<div wire:ignore.self class="modal fade" id="deleteUtilisateurModal" tabindex="-1" data-backdrop="static" data-keyboard="false" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
-        <div class="modal-dialog" role="document">
+<div wire:ignore.self class="modal fade bd-example-modal-lg" id="deleteUtilisateurModal" tabindex="-1" data-backdrop="static" data-keyboard="false" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">Delete Confirmation</h5>
@@ -290,8 +327,8 @@
 
 <!-- view utilisateur-->
 
-<div wire:ignore.self class="modal fade" id="viewUtilisateurModal" tabindex="-1" data-backdrop="static" data-keyboard="false" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
-        <div class="modal-dialog" role="document">
+<div wire:ignore.self class="modal fade bd-example-modal-lg" id="viewUtilisateurModal" tabindex="-1" data-backdrop="static" data-keyboard="false" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">Utilisateur Information</h5>

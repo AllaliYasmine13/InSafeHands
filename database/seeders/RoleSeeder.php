@@ -17,10 +17,11 @@ class RoleSeeder extends Seeder
     public function run()
     {
         DB::table("roles")->insert([
-            ["name"=>"admin"],
-            ["name"=>"secretaire"],
-            ["name"=>"medecin"],
-            ["name"=>"patient"]
+            ["name"=>"Admin"],
+            ["name"=>"Secretaire"],
+            ["name"=>"Medecin"],
+            ["name"=>"Patient"],
+            ["name"=>"Medecin_Coordinateur"]
         ]);
         // Role::factory(1)->create();
     }

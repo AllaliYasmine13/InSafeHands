@@ -24,7 +24,7 @@ return new class extends Migration
 
             $table->string('adresse')->nullable();
             $table->string('telephone')->nullable();
-            $table->string('email')->nullable();
+            $table->string('email')->unique()->nullable();
             $table->string('medecin_traitant')->nullable();
             $table->string('adressee_par')->nullable();
             $table->string('assurance_maladie')->nullable();

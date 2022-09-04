@@ -22,7 +22,6 @@ return new class extends Migration
             $table->string('email')->nullable();
             $table->string('medecin_traitant')->nullable();
             $table->string('select_date')->nullable();
-            $table->string('commentaire')->nullable();
             $table->timestamps();
         });
     }
