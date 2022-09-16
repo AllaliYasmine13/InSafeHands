@@ -12,37 +12,30 @@
                            <div class="msg_list_main">
                                    <ul class="msg_list">
                                        <li>
-                                          <span><img src="images/layout_img/msg2.png" class="img-responsive" alt="#" /></span>
+                                          <span><img src="images/user.png" class="img-responsive" alt="#" /></span>
                                           <span>
-                                          <span class="name_user">Herman Beck</span>
-                                          <span class="msg_user">Sed ut perspiciatis unde omnis.</span>
-                                          <span class="time_ago">12 min ago</span>
+                                          <span class="name_user">Allali youcef</span>
+                                          <span class="msg_user">----------------</span>
+                                          <span class="time_ago">2 weeks ago</span>
                                           </span>
                                        </li>
                                        <li>
-                                          <span><img src="images/layout_img/msg3.png" class="img-responsive" alt="#" /></span>
+                                          <span><img src="images/user.png" class="img-responsive" alt="#" /></span>
                                           <span>
-                                          <span class="name_user">John Smith</span>
-                                          <span class="msg_user">On the other hand, we denounce.</span>
-                                          <span class="time_ago">12 min ago</span>
+                                          <span class="name_user">Dib Fatima</span>
+                                          <span class="msg_user">-----------------</span>
+                                          <span class="time_ago">1 week ago</span>
                                           </span>
                                        </li>
                                        <li>
-                                          <span><img src="images/layout_img/msg2.png" class="img-responsive" alt="#" /></span>
+                                          <span><img src="images/user.png" class="img-responsive" alt="#" /></span>
                                           <span>
-                                          <span class="name_user">John Smith</span>
-                                          <span class="msg_user">Sed ut perspiciatis unde omnis.</span>
-                                          <span class="time_ago">12 min ago</span>
+                                          <span class="name_user">Koubci Tasnime</span>
+                                          <span class="msg_user">-----------------</span>
+                                          <span class="time_ago">1 week ago</span>
                                           </span>
                                        </li>
-                                       <li>
-                                          <span><img src="images/layout_img/msg3.png" class="img-responsive" alt="#" /></span>
-                                          <span>
-                                          <span class="name_user">John Smith</span>
-                                          <span class="msg_user">On the other hand, we denounce.</span>
-                                          <span class="time_ago">12 min ago</span>
-                                          </span>
-                                       </li>
+                                       
                                     </ul>
                            </div>
                         
@@ -63,9 +56,16 @@
                               <div class="counter_no">
                                  <div>
                                     <p class="total_no">Salle d'attente</p>
-                                    <p class="head_couter">Average Time</p>
+                                    <h1>15</h1>
                                  </div>
                               </div>
+                              <div class="card-footer d-flex align-items-center justify-content-between"> 
+                                   <a class="big text-blue stretched-link" href="#"> 
+                                   View Details</a>
+                                 <div class="big text-blue">
+                                    <i style="blue2_color" class="fa fa-chevron-right"></i>
+                                 </div>     
+                             </div>
                            </div>
                         </div>
                         <div class="col-md-6">
@@ -77,10 +77,17 @@
                               </div>
                               <div class="counter_no">
                                  <div>
-                                    <p class="total_no">Patients</p>
-                                    <p class="head_couter">Collections</p>
+                                    <p class="total_no">Total Patients</p>
+                                    <h1>{{PatientsCounter()}}</h1>
                                  </div>
                               </div>
+                              <div class="card-footer d-flex align-items-center justify-content-between"> 
+                                   <a class="big text-blue stretched-link" href="{{route('Medecin.patients_agees')}}"> 
+                                   View Details</a>
+                                 <div class="big text-blue">
+                                    <i style="blue2_color" class="fa fa-chevron-right"></i>
+                                 </div>     
+                             </div>
                            </div>
                         </div>                       
                      </div> 

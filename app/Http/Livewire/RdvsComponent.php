@@ -46,7 +46,7 @@ public function updated($fields)
             'prenom' => 'required',
             'num_tel' => 'required',
             'email' => 'required|email',
-            'heure_service' => 'required',
+            'service' => 'required',
             'medecin_traitant' => 'required',
             'select_date' => 'required',
             'heure_debut' => 'required',
@@ -68,7 +68,7 @@ public function updated($fields)
 
         $rdv->save();
 
-        session()->flash('message', 'New Render-Vous has been added successfully');
+        session()->flash('message', 'Nouveau Render-Vous Ajouter avec succés');
 
         $this->rdv_id = '';
         $this->nom = '';
@@ -159,7 +159,7 @@ public function editRdvs($id)
     $rdv->save();
 
 
-    session()->flash('message', 'Render-Vous has been updated successfully');
+    session()->flash('message', 'Render-Vous Mise à jour avec succés');
 
 
     //For hide modal after add student success
@@ -188,7 +188,7 @@ public function deleteRdvData()
     $rdv->delete();
 
 
-    session()->flash('message', 'RDV has been deleted successfully');
+    session()->flash('message', 'Rendez-vous supprimé avec succés');
 
 
     $this->dispatchBrowserEvent('close-modal');
@@ -256,7 +256,7 @@ public function cancel()
 
          return view('livewire.rdvs-component',[
             'rdvs'=>$rdvs,
-            'rdvs'=>Rdvs::paginate(5)
+            'rdvs'=>Rdvs::paginate(4)
             
             ])->layout('livewire.layouts.base2')
               ->extends("layouts.master")

@@ -8,6 +8,7 @@ use App\Http\Livewire\PatientsComponent;
 use App\Http\Livewire\DossierMedicalComponent;
 use App\Http\Livewire\FicheNavetteComponent;
 use App\Http\Livewire\OrdonnanceComponent;
+use App\Http\Livewire\CertificatMedicalComponent;
 
 use App\Http\Livewire\Utilisateurs;
 use App\Http\Livewire\clientComp;
@@ -22,6 +23,7 @@ use App\Http\Controllers\PatientController;
 
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\EmailController;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,13 +40,17 @@ use App\Http\Controllers\EmailController;
 
 // Route::get('/', function () {
 //     return view('welcome');
-// });
+//  });
 
 Route::get('/email', [App\Http\Controllers\EmailController::class, 'create']);
 Route::post('/email', [App\Http\Controllers\EmailController::class, 'sendEmail'])->name('send.email');
 
 Route::get('/', function () {
     return view('index');
+});
+
+Route::get('/charts', function () {
+    return view('charts');
 });
 
 Route::get('/dashboard', function () {
@@ -65,11 +71,14 @@ Route::middleware(['auth','role:admin'])->group(function(){
 // livewire routes
 Route::get('utilisateurs',UtilisateursComponent::class);
 Route::get('utilisateur',UtilisateurComponent::class);
-Route::get('rdvs',RdvsComponent::class);
-Route::get('patients',PatientsComponent::class);
-Route::get('dossier_medicals',DossierMedicalComponent::class);
-Route::get('fiche_navettes',FicheNavetteComponent::class);
-Route::get('ordonnance',OrdonnanceComponent::class);
+
+Route::get('gestion_des_rdvs',RdvsComponent::class);
+Route::get('patients_agees',PatientsComponent::class);
+
+Route::get('dossier_medical',DossierMedicalComponent::class);
+Route::get('documents_medicaux/fiche_navette',FicheNavetteComponent::class);
+Route::get('documents_medicaux/ordonnance',OrdonnanceComponent::class);
+Route::get('documents_medicaux/certificat_medical',CertificatMedicalComponent::class);
 // end livewire routes
 
 /*-------------------- Admin Routes ----------------------*/
@@ -130,7 +139,7 @@ Route::group([
     'prefix' => 'gestions',
     'as' => 'gestions.'
 ], function(){
-        Route::get('/utilisateurs', Utilisateurs::class)->name('users.index');       
+        Route::get('/utilisateur', UtilisateurComponent::class)->name('utilisateur');       
      }); 
      
  });
@@ -139,7 +148,18 @@ Route::group([
     "middleware" => ["auth", "auth.Medecin"],
     'as' => 'Medecin.'
 ], function(){
-    // Route::get("/patients_agees", clientComp::class)->name("patients_agees.index");
+
+    Route::group([
+        'prefix' => 'documents_medicaux',
+        'as' => 'documents_medicaux.'
+], function(){
+
+    Route::get('/dossier_medical',DossierMedicalComponent::class)->name('dossier_medical');
+    Route::get('/fiche_navette',FicheNavetteComponent::class)->name('fiche_navette');
+    Route::get('/ordonnance',OrdonnanceComponent::class)->name('ordonnance');
+    Route::get('/certificat_medical',CertificatMedicalComponent::class)->name('certificat_medical');     
+         });
+
     Route::get("/patients_agees", PatientsComponent::class)->name("patients_agees");
 });
 

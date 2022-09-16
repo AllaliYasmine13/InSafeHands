@@ -14,23 +14,22 @@ class DossierMedicalComponent extends Component
 
     protected $paginationTheme = "bootstrap";
     
-    public $dossier_medical_id, $dossier_id, $nom, $prenom, $service, $medecin_traitant, $date_naissance, $lieu_naissance, $domicille, $profession, $medecin_chef, $salle, $num_lit, $date_entree,$mode_entree, $date_sortie, $mode_sortie, $diagnostic, $traitement, $observations, $explorations, $etat_sortie, $indications, $signature_chef_service, 
+    public $dossier_medical_id, $dossier_id, $nom, $prenom, $photo, $service, $medecin_traitant, $date_naissance, $lieu_naissance, $domicille, $profession, $medecin_chef, $salle, $num_lit, $date_entree,$mode_entree, $date_sortie, $mode_sortie, $diagnostic, $traitement, $observations, $explorations, $etat_sortie, $indications, $signature_chef_service, 
     
     $dossier_medical_edit_id, $dossier_medical_delete_id;
     
     public $view_dossier_medical_id, $view_dossier_medical_nom, $view_dossier_medical_prenom, $view_dossier_medical_date_naissance, $view_dossier_medical_created_at ;
 
     public $searchTerm;
-//Input fields on update validation
 
+//Input fields on update validation
 public function updated($fields)
 {
     $this->validateOnly($fields, [
-        'dossier_medical_id' => 'required|unique:dossier_medicals,dossier_medical_id,'.$this->dossier_medical_edit_id.'', //Validation with ignoring own data
-        'dossier_id' => 'required',
+        'dossier_id' => 'required|unique:dossier_medicals,dossier_id,'.$this->dossier_medical_edit_id.'', //Validation with ignoring own data
         'nom' => 'required',
         'prenom' => 'required',
-        'photo' => 'required',
+        'photo' => 'image|max:1024', // 1MB Max
         'service' => 'required',
 
         'date_naissance' => 'required',
@@ -65,11 +64,10 @@ public function updated($fields)
 
         //on form submit validation
         $this->validate([
-            'dossier_medical_id' => 'required|unique:dossier_medicals', // dossier_medicals = table name
-            'dossier_id' => 'required',
+            'dossier_id' => 'required|unique:dossier_medicals', // dossier_medicals = table name
             'nom' => 'required',
             'prenom' => 'required',
-            'photo' => 'required',
+            'photo' => 'image|max:1024',
             'service' => 'required',
     
             'date_naissance' => 'required',
@@ -104,7 +102,7 @@ public function updated($fields)
         $dossier_medical ->dossier_id = $this->dossier_id;
         $dossier_medical ->nom = $this->nom;
         $dossier_medical ->prenom = $this->prenom;
-        $dossier_medical ->photo = $this->photo;
+        $dossier_medical ->photo = $this->$photo->hashName;
         $dossier_medical ->service = $this->service;
 
         $dossier_medical ->date_naissance = $this->date_naissance;
@@ -167,6 +165,10 @@ public function updated($fields)
         
         //For hide model after add student success 
         $this->dispatchBrowserEvent('close-modal');
+
+        if(!empty($this->photo)) {
+            $this->photo->store('public/photos');
+         }
     }
 
     public function resetInputs()
@@ -252,11 +254,10 @@ public function editDossierMedical($id)
 
         //on form submit validation
         $this->validate([
-            'dossier_medical_id' => 'required|unique:dossier_medicals,dossier_medical_id,'.$this->dossier_medical_edit_id.'', //Validation with ignoring own data
-            'dossier_id' => 'required',
+            'dossier_id' => 'required|unique:dossier_medicals,dossier_id,'.$this->dossier_medical_edit_id.'', //Validation with ignoring own data
             'nom' => 'required',
             'prenom' => 'required',
-            'photo' => 'required',
+            'photo' => 'image|max:1024',
             'service' => 'required',
     
             'date_naissance' => 'required',
@@ -371,7 +372,7 @@ public function editDossierMedical($id)
         {
             $dossier_medical = DossierMedical::where('id', $id)->first();
                 
-            $this->view_dossier_medical_id = $dossier_medical->dossier_id;
+            $this->view_dossier_medical_dossier_id = $dossier_medical->dossier_id;
             $this->view_dossier_medical_nom = $dossier_medical->nom;
             $this->view_dossier_medical_prenom = $dossier_medical->prenom;
             $this->view_dossier_medical_photo = $dossier_medical->photo;
@@ -407,7 +408,7 @@ public function editDossierMedical($id)
         
         public function closeViewDossierMedicalModal()
         {
-            $this->view_dossier_medical_id = '';
+            $this->view_dossier_medical_dossier_id = '';
             $this->view_dossier_medical_nom = '';
             $this->view_dossier_medical_prenom = '';
             $this->view_dossier_medical_photo = '';
@@ -443,15 +444,17 @@ public function editDossierMedical($id)
     public function render()
 
     {   // get All Dossier Medicals
-        $dossier_medicals= DossierMedical::where('nom','like','%'.$this->searchTerm.'%')->orWhere('prenom','like','%'.$this->searchTerm.'%')->orWhere('dossier_id','like','%'.$this->searchTerm.'%')->get();
+        $dossier_medicals= DossierMedical::where('nom','like','%'.$this->searchTerm.'%')->orWhere('prenom','like','%'.$this->searchTerm.'%')
+        ->orWhere('dossier_id','like','%'.$this->searchTerm.'%')
+        ->get();
 
          return view('livewire.dossier-medical-component',[
             'dossier_medicals'=>$dossier_medicals,
             'dossier_medicals'=>DossierMedical::paginate(2)
             
-            ])->layout('livewire.layouts.base3');
-            //   ->extends("layouts.master")
-            //   ->section("contenu");
+            ])->layout('livewire.layouts.base3')
+              ->extends("layouts.master")
+              ->section("contenu");
 
     }
 }

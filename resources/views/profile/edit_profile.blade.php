@@ -1,7 +1,7 @@
 <!-- dashboard edit profile -->
 @extends("layouts.master")
 
-@section("contenu")
+@section("contenu") 
 
 <!-- dashboard inner -->
  <div class="row column_title">
@@ -11,15 +11,7 @@
         </div>
     </div>
 </div>
-
- <!-- Content Header (Page header) -->
-    {{-- <section class="content-header">
-        <div class="container-fluid">
-         
-        </div><!-- /.container-fluid -->
-      </section> --}}
-  
-      <!-- Main content -->
+ <!-- Main content -->
       <section class="content">
         <div class="container-fluid">
           <div class="row">
@@ -74,13 +66,6 @@
                             <span class="text-danger error-text email_error"></span>
                           </div>
                         </div>
-                        {{-- <div class="form-group row">
-                          <label for="inputName2" class="col-sm-2 col-form-label">Favorite Color</label>
-                          <div class="col-sm-10">
-                            <input type="text" class="form-control" id="inputName2" placeholder="Favorite color" value="{{ Auth::user()->favoriteColor }}" name="favoritecolor">
-                            <span class="text-danger error-text favoritecolor_error"></span>
-                          </div>
-                        </div> --}}
                         <div class="form-group row">
                           <div class="offset-sm-2 col-sm-10">
                             <button type="submit" class="btn btn-danger">Save Changes</button>
@@ -130,5 +115,5 @@
           <!-- /.row -->
         </div><!-- /.container-fluid -->
       </section>
-      <!-- /.content -->
+      <!-- /.content --> 
 @endsection

@@ -1,5 +1,5 @@
 <div>
-    <div class="container mt-5">
+<div class="container mt-5">
     <div class="row">
             <div class="col-md-12">
                 <div class="card">
@@ -73,8 +73,6 @@
             </div>
    </div>              
    </div> 
-   
-
     <!-- Modal -->
     <!-- add utilisateur-->
     <div wire:ignore.self class="modal fade bd-example-modal-lg" id="addRdvModal" tabindex="-1" data-backdrop="static" data-keyboard="false" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
@@ -334,7 +332,7 @@
                         <div class="form-group row">
                             <label for="" class="col-3"></label>
                             <div class="col-9">
-                                <button type="submit" class="main_bt read_bt"><i class="fa fa-plus"></i><b style="font-weight:bold;"> Enregistrer</b></button>
+                                <button type="submit" class="main_bt read_bt"><i class="fa fa-check"></i><b style="font-weight:bold;"> Enregistrer</b></button>
                             </div>
                         </div>
  
@@ -360,11 +358,11 @@
                     </button>
                 </div>
                 <div class="modal-body pt-4 pb-4">
-                    <h6>Are you sure? You want to delete this Render-Vous data!</h6>
+                    <h6>Etes-vous sùre de vouloir Annuler cet Rendez-vous !</h6>
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-sm btn-primary" wire:click="cancel()" data-dismiss="modal" aria-label="Close">Cancel</button>
-                    <button class="btn btn-sm btn-danger" wire:click="deleteRdvData()">Yes! Delete</button>
+                    <button class="btn btn-sm btn-danger" wire:click="deleteRdvData()">Oui! Supprimer</button>
                 </div>
             </div>
         </div>
@@ -475,8 +473,6 @@
             $('#viewRdvModal').modal('show');
           
         });
-
-
 
     </script>
 

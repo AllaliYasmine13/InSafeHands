@@ -18,8 +18,6 @@ return new class extends Migration
             $table->string('patient_id')->unique()->nullable();
             $table->string('nom_prenom')->nullable();
             $table->string('date')->nullable();
-            $table->double('poid')->nullable();
-            $table->double('taille')->nullable();
             $table->string('maladie_chronique')->nullable();
 
             $table->string('adresse')->nullable();

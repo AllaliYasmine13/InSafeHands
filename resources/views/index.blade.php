@@ -107,89 +107,6 @@
 			</nav>
 		</div>
 
- <!-- modal -->
-<!-- login -->
-		<div class="modal fade" id="exampleModalCenter1" tabindex="-1" role="dialog" aria-hidden="true">
-			<div class="modal-dialog modal-dialog-centered" role="document">
-				<div class="modal-content">
-					<div class="modal-header text-center">
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-					</div>
-					<div class="modal-body">
-						<div class="login px-4 mx-auto mw-100">
-							
-						<h5 class="text-center mb-4">Login Now</h5>
-							<form action="#" method="post">
-								<div class="form-group">
-									<label>Email Address</label>
-									<input type="email" class="form-control" name="email" placeholder="" required="">
-								</div>
-								<div class="form-group">
-									<label class="mb-2">Password</label>
-									<input type="password" class="form-control" name="password" placeholder="" required="">
-								</div>
-								<button type="submit" class="btn submit mb-4">Login</button>
-								<p class="forgot-w3ls text-center pb-4">
-									<a href="#" class="text-white">Forgot your password?</a>
-								</p>
-								<p class="account-w3ls text-center pb-4">
-									Don't have an account?
-									<a href="#" data-toggle="modal" data-target="#exampleModalCenter2">Create one now</a>
-								</p>
-							</form>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- //login -->
-
-		<!-- register -->
-		<div class="modal fade" id="exampleModalCenter2" tabindex="-1" role="dialog" aria-hidden="true">
-			<div class="modal-dialog modal-dialog-centered" role="document">
-				<div class="modal-content modal-content-2">
-					<div class="modal-header text-center">
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-					</div>
-					<div class="modal-body">
-						<div class="login px-4 mx-auto mw-100">
-							<h5 class="text-center mb-4">Register Now</h5>
-							<form action="#" method="post">
-								<div class="form-group">
-									<label>Your Name</label>
-									<input type="text" class="form-control" name="name" placeholder="" required="">
-								</div>
-								<div class="form-group">
-									<label>Email</label>
-									<input type="email" class="form-control" name="email" placeholder="" required="">
-								</div>
-								<div class="form-group">
-									<label class="mb-2">Password</label>
-									<input type="password" class="form-control" name="password" id="password1" placeholder="" required="">
-								</div>
-								<div class="form-group">
-									<label>Confirm Password</label>
-									<input type="password" class="form-control" name="password" id="password2" placeholder="" required="">
-								</div>
-								<button type="submit" class="btn btn-primary submit mb-4">Register</button>
-								<p class="text-center pb-2">
-									<a href="#" class="text-white">By clicking Register, I agree to your terms</a>
-								</p>
-							</form>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- //register -->
-		<!-- //modal -->
-
-
-
 		<div class="container">
 
 			<!-- header -->
@@ -202,7 +119,7 @@
 								<li>
 									<div class=" w3l-info">
 										<div class="col-md-8  info-lleft-side">
-											<h4>Wellcome To Our Centre In Safe Hands!</h4>
+											<h4>Wellcome To In Safe Hands Center !</h4>
 											<p>In Safe Hands : Centre de soins pour les personnes agées offre des différents
 												services pour nos chers grands mères et pères.</p>
 										</div>
@@ -468,9 +385,10 @@
 			<ul class="nav-buttom">
 				<li><a class="page-scroll scroll" href="#home">Home</a></li>
 				<li><a class="page-scroll scroll" href="#about">About</a></li>
-				<li><a class="page-scroll scroll" href="#service">Facilities</a></li>
-				<li><a class="page-scroll scroll" href="#gallery">Laboratory</a></li>
+				<li><a class="page-scroll scroll" href="#service">Services</a></li>
+				<li><a class="page-scroll scroll" href="#specialistes">Spécialistes</a></li>
 				<li><a class="page-scroll scroll" href="#contact">Contact</a></li>
+				<li><a class="page-scroll scroll" href="">Login</a></li>
 			</ul>
 		</nav>
 		<div class="container">

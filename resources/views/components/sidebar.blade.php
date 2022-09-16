@@ -31,7 +31,7 @@
                         <a href="#dashboard" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-cogs"></i> <span> Gestion Des Utilisateurs</span></a>
                         <ul class="collapse list-unstyled" id="dashboard">
                            <li>
-                              <a href="{{route('Admin.gestions.users.index')}}">> <span> Utilisateurs</span></a>
+                              <a href="{{route('Admin.gestions.utilisateur')}}">> <span> Utilisateurs</span></a>
                            </li>
                            <li>
                               <a href="">> <span> Roles et Permission</span></a>
@@ -46,7 +46,7 @@
                         <a href="{{ route('calendar') }}" ><i class="fa fa-calendar"></i> <span>Planner</span></a>
                        
                      </li>
-                     <li><a href="{{ route ('admin.dashboard.statistiques')}}"><i class="fa fa-bar-chart-o"></i> <span>Statistiques de Utilisateurs</span></a></li> 
+                     <li><a href="charts"><i class="fa fa-bar-chart-o"></i> <span>Statistiques des Utilisateurs</span></a></li> 
                      @endcan
 
                   {{-- Espace Secretaire --}}
@@ -73,16 +73,16 @@
                         <a href="#element" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-folder-open"></i> <span> Documents Médicaux</span></a>
                      <ul class="collapse list-unstyled" id="element">
                            <li>
-                              <a href="">> <span> Dossier Médical</span></a>
+                              <a href="{{ route ('Medecin.documents_medicaux.dossier_medical') }}">> <span> Dossier Médical</span></a>
                            </li>
                            <li>
-                              <a href="">> <span> Certificat Médical</span></a>
+                              <a href="{{ route ('Medecin.documents_medicaux.certificat_medical') }}">> <span> Certificat Médical</span></a>
                            </li>
                            <li>
-                              <a href="">> <span> Fiche Navette</span></a>
+                              <a href="{{ route ('Medecin.documents_medicaux.fiche_navette') }}">> <span> Fiche Navette</span></a>
                            </li>
                            <li>
-                              <a href="">> <span> Ordonnance</span></a>
+                              <a href="{{ route ('Medecin.documents_medicaux.ordonnance') }}">> <span> Ordonnance</span></a>
                            </li>
                         </ul> 
                      </li>                    

@@ -195,7 +195,7 @@ public function cancel()
     }
     
     
-    public function closeViewRdvModal()
+    public function closeViewOrdonnanceModal()
     {
         $this->view_ordonnance_id = '';
         $this->view_ordonnance_date_ordonnance = '';
@@ -214,7 +214,8 @@ public function cancel()
     public function render()
     {
         // get All ordonnances
-        $ordonnances= Ordonnance::where('ordonnance_id','like','%'.$this->searchTerm.'%')->orWhere('nom','like','%'.$this->searchTerm.'%')
+        $ordonnances= Ordonnance::where('ordonnance_id','like','%'.$this->searchTerm.'%')
+        ->orWhere('nom','like','%'.$this->searchTerm.'%')
         ->orWhere('prenom','like','%'.$this->searchTerm.'%')
         ->get();
 
@@ -222,6 +223,8 @@ public function cancel()
 
             'ordonnances'=>$ordonnances,
             'ordonnances'=>Ordonnance::paginate(2)
-        ])->layout('livewire.layouts.base6');
+        ])->layout('livewire.layouts.base6')
+          ->extends("layouts.master")
+          ->section("contenu");
     }
 }

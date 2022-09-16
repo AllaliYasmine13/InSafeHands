@@ -387,6 +387,8 @@ public function cancel()
             'fiche_navettes'=>$fiche_navettes,
             'fiche_navettes'=>FicheNavette::paginate(2)
 
-        ])->layout('livewire.layouts.base5');
+        ])->layout('livewire.layouts.base5')
+          ->extends("layouts.master")
+          ->section("contenu");
     }
 }

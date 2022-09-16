@@ -13,8 +13,10 @@ class PatientsComponent extends Component
 {
     use WithPagination;
     protected $paginationTheme = "bootstrap";
-    public $patient_id, $nom_prenom, $date, $poid, $taille, $maladie_chronique,$adresse, $telephone, $email, $medecin_traitant, $adressee_par, $assurance_maladie, $nom_contact_urgence, $tel_contact_urgence , $patient_edit_id, $patient_delete_id;
-    public $view_patient_id, $view_patient_nom_prenom, $view_patient_date, $view_patient_poid, $view_patient_taille, $view_patient_maladie_chronique,$view_patient_adresse, $view_patient_telephone, $view_patient_email, $view_patient_medecin_traitant, $view_patient_adressee_par, $view_patient_assurance_maladie, $view_patient_nom_contact_urgence, $view_patient_tel_contact_urgence;
+    
+    public $patient_id, $nom, $prenom, $date, $poid, $taille, $maladie_chronique,$adresse, $telephone, $email, $medecin_traitant, $adressee_par, $securite_social, $assurance_maladie, $nom_contact_urgence, $tel_contact_urgence , $patient_edit_id, $patient_delete_id;
+    public $view_patient_id, $view_patient_nom, $view_patient_prenom, $view_patient_date, $view_patient_poid, $view_patient_taille, $view_patient_maladie_chronique,$view_patient_adresse, $view_patient_telephone, $view_patient_email, $view_patient_medecin_traitant, $view_patient_adressee_par, $view_patient_assurance_maladie, $view_patient_securite_social, $view_patient_nom_contact_urgence, $view_patient_tel_contact_urgence;
+    
     public $searchTerm;
     //Input fields on update validation
 
@@ -23,7 +25,8 @@ class PatientsComponent extends Component
     {
         $this->validateOnly($fields, [
             'patient_id' => 'required|unique:patients_agees,patient_id,'.$this->patient_edit_id.'', //Validation with ignoring own data
-            'nom_prenom' => 'required',
+            'nom' => 'required',
+            'prenom' => 'required',
             'date' => 'required',
             'poid' => 'required',
             'taille' => 'required',
@@ -33,6 +36,7 @@ class PatientsComponent extends Component
             'email' => 'required|email',
             'medecin_traitant' => 'required',
             'adressee_par' => 'required',
+            'securite_social' => 'required',
             'assurance_maladie' => 'required',
             'nom_contact_urgence' => 'required',
             'tel_contact_urgence' => 'required',
@@ -45,7 +49,8 @@ class PatientsComponent extends Component
         //on form submit validation
         $this->validate([
             'patient_id' => 'required|unique:patients_agees', // patients_agees = table name
-            'nom_prenom' => 'required',
+            'nom' => 'required',
+            'prenom' => 'required',
             'date' => 'required',
             'poid' => 'required',
             'taille' => 'required',
@@ -55,6 +60,7 @@ class PatientsComponent extends Component
             'email' => 'required|email',
             'medecin_traitant' => 'required',
             'adressee_par' => 'required',
+            'securite_social' => 'required',
             'assurance_maladie' => 'required',
             'nom_contact_urgence' => 'required',
             'tel_contact_urgence' => 'required',
@@ -63,7 +69,8 @@ class PatientsComponent extends Component
                 //Add Student Data
                 $patient =new PatientsAgees();
                 $patient ->patient_id = $this->patient_id;
-                $patient ->nom_prenom = $this->nom_prenom;
+                $patient ->nom = $this->nom;
+                $patient ->prenom = $this->prenom;
                 $patient ->date = $this->date;
                 $patient ->poid = $this->poid;
                 $patient ->taille = $this->taille;
@@ -73,16 +80,18 @@ class PatientsComponent extends Component
                 $patient ->email = $this->email;
                 $patient ->medecin_traitant = $this->medecin_traitant;
                 $patient ->adressee_par = $this->adressee_par;
+                $patient ->securite_social = $this->securite_social;
                 $patient ->assurance_maladie = $this->assurance_maladie;
                 $patient ->nom_contact_urgence = $this->nom_contact_urgence;
                 $patient ->tel_contact_urgence = $this->tel_contact_urgence;
         
                 $patient->save();
         
-                session()->flash('message', 'New Patient Agé has been added successfully');
+                session()->flash('message', 'Nouveau Patient Agé Ajouté avec succés');
         
                 $this->patient_id = '';
-                $this->nom_prenom = '';
+                $this->nom = '';
+                $this->prenom = '';
                 $this->date = '';
                 $this->poid= '';
                 $this->taille = '';
@@ -92,6 +101,7 @@ class PatientsComponent extends Component
                 $this->email= '';
                 $this->medecin_traitant = '';
                 $this->adressee_par = '';
+                $this->securite_social = '';
                 $this->assurance_maladie = '';
                 $this->nom_contact_urgence = '';
                 $this->tel_contact_urgence= '';
@@ -103,7 +113,8 @@ class PatientsComponent extends Component
             public function resetInputs()
             {
                 $this->patient_id = '';
-                $this->nom_prenom = '';
+                $this->nom = '';
+                $this->prenom = '';
                 $this->date = '';
                 $this->poid= '';
                 $this->taille = '';
@@ -113,6 +124,7 @@ class PatientsComponent extends Component
                 $this->email= '';
                 $this->medecin_traitant = '';
                 $this->adressee_par = '';
+                $this->securite_social = '';
                 $this->assurance_maladie = '';
                 $this->nom_contact_urgence = '';
                 $this->tel_contact_urgence= '';
@@ -133,7 +145,8 @@ public function editPatient($id)
 
     $this->patient_edit_id = $patient->id;
     $this->patient_id = $patient->patient_id;
-    $this->nom_prenom = $patient->nom_prenom;
+    $this->nom= $patient->nom;
+    $this->prenom= $patient->prenom;
     $this->date = $patient->date;
     $this->poid = $patient->poid;
     $this->taille = $patient->taille;
@@ -143,6 +156,7 @@ public function editPatient($id)
     $this->email = $patient->email;
     $this->medecin_traitant = $patient->medecin_traitant;
     $this->adressee_par = $patient->adressee_par;
+    $this->securite_social = $patient->securite_social;
     $this->assurance_maladie = $patient->assurance_maladie;
     $this->nom_contact_urgence = $patient->nom_contact_urgence;
     $this->tel_contact_urgence = $patient->tel_contact_urgence;
@@ -155,7 +169,8 @@ public function editPatientData(){
     //on form submit validation
     $this->validate([
     'patient_id' => 'required|unique:patients_agees,patient_id,'.$this->patient_edit_id.'', //Validation with ignoring own data
-    'nom_prenom' => 'required',
+    'nom' => 'required',
+    'prenom' => 'required',
     'date' => 'required',
     'poid' => 'required',
     'taille' => 'required',
@@ -165,6 +180,7 @@ public function editPatientData(){
     'email' => 'required|email',
     'medecin_traitant' => 'required',
     'adressee_par' => 'required',
+    'securite_social' => 'required',
     'assurance_maladie' => 'required',
     'nom_contact_urgence' => 'required',
     'tel_contact_urgence' => 'required',
@@ -172,7 +188,8 @@ public function editPatientData(){
 
 $patient = PatientsAgees::where('id', $this->patient_edit_id)->first();
 $patient->patient_id = $this->patient_id;
-$patient ->nom_prenom = $this->nom_prenom;
+$patient ->nom = $this->nom;
+$patient ->prenom = $this->prenom;
 $patient ->date = $this->date;
 $patient ->poid = $this->poid;
 $patient ->taille = $this->taille;
@@ -182,6 +199,7 @@ $patient ->telephone = $this->telephone;
 $patient ->email = $this->email;
 $patient ->medecin_traitant = $this->medecin_traitant;
 $patient ->adressee_par = $this->adressee_par;
+$patient ->securite_social = $this->securite_social;
 $patient ->assurance_maladie = $this->assurance_maladie;
 $patient ->nom_contact_urgence = $this->nom_contact_urgence;
 $patient ->tel_contact_urgence = $this->tel_contact_urgence;
@@ -189,7 +207,7 @@ $patient ->tel_contact_urgence = $this->tel_contact_urgence;
 $patient->save();
 
 
-session()->flash('message', 'Patient Agé has been updated successfully');
+session()->flash('message', 'Patient Agé Mise à jour avec succés');
 
 
 //For hide modal after add student success
@@ -217,7 +235,7 @@ $this->dispatchBrowserEvent('close-modal');
     $patient->delete();
 
 
-    session()->flash('message', 'Patient Agé has been deleted successfully');
+    session()->flash('message', 'Patient Agé Supprimé avec succes');
 
 
     $this->dispatchBrowserEvent('close-modal');
@@ -240,7 +258,8 @@ public function cancel()
         $patient = PatientsAgees::where('id', $id)->first();
     
         $this->view_patient_id = $patient->patient_id;
-        $this->view_patient_nom_prenom = $patient->nom_prenom;
+        $this->view_patient_nom = $patient->nom;
+        $this->view_patient_prenom = $patient->prenom;
         $this->view_patient_date = $patient->date;
         $this->view_patient_poid = $patient->poid;
         $this->view_patient_taille = $patient->taille;
@@ -250,6 +269,7 @@ public function cancel()
         $this->view_patient_email = $patient->email;
         $this->view_patient_medecin_traitant = $patient->medecin_traitant;
         $this->view_patient_adressee_par = $patient->adressee_par;
+        $this->view_patient_securite_social = $patient->securite_social;
         $this->view_patient_assurance_maladie = $patient->assurance_maladie;
         $this->view_patient_nom_contact_urgence = $patient->nom_contact_urgence;
         $this->view_patient_tel_contact_urgence = $patient->tel_contact_urgence;
@@ -261,7 +281,8 @@ public function cancel()
     public function closeViewPatientModal()
     {
         $this->view_patient_patient_id = '';
-        $this->view_patient_nom_prenom = '';
+        $this->view_patient_nom = '';
+        $this->view_patient_prenom = '';
         $this->view_patient_date = '';
         $this->view_patient_poid= '';
         $this->view_patient_taille = '';
@@ -272,6 +293,7 @@ public function cancel()
         $this->view_patient_medecin_traitant = '';
         $this->view_patient_adressee_par = '';
         $this->view_patient_assurance_maladie = '';
+        $this->view_patient_securite_social = '';
         $this->view_patient_nom_contact_urgence = '';
         $this->view_patient_tel_contact_urgence= '';
     }
@@ -281,11 +303,14 @@ public function cancel()
     public function render()
     {
         // get All Patients agées
-        $patients= PatientsAgees::where('nom_prenom','like','%'.$this->searchTerm.'%')->orWhere('patient_id','like','%'.$this->searchTerm.'%')->orWhere('date','like','%'.$this->searchTerm.'%')->get();
+        $patients= PatientsAgees::where('nom','like','%'.$this->searchTerm.'%')
+        ->orWhere('prenom','like','%'.$this->searchTerm.'%')
+        ->orWhere('patient_id','like','%'.$this->searchTerm.'%')
+        ->orWhere('date','like','%'.$this->searchTerm.'%')->get();
 
         return view('livewire.patients-component',[
             'patients'=>$patients,
-            'patients'=>PatientsAgees::paginate(4)
+            'patients'=>PatientsAgees::paginate(3)
 
             ])->layout('livewire.layouts.base1')
               ->extends("layouts.master")

@@ -4,10 +4,10 @@
     <div class="row">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header">
-                        <h5 style="float: left;"><strong>Liste Des Utilisateurs</strong></h5>
-                        <button class="btn btn-sm btn-primary" style="float: right;" data-toggle="modal" data-target="#addUserModal">Ajouter Utilisateur</button>
-                    </div>
+                 <div class="dash_head">
+                        <h3 style="float: left;"><span><i class="fa fa-user-plus fa-2x"></i><b style="font-weight:bold;"><font size="+2"> La Liste des Utilisateurs </font></b></span></h3>
+                        <button class="main_bt read_bt" style="float: right;" data-toggle="modal" data-target="#addUserModal"><i class="fa fa-plus"></i><b style="font-weight:bold;"> Ajouter Utilisateur</button>
+                 </div>
 
                     <div class="card-body">
 
@@ -21,33 +21,31 @@
                                 style="float:right;"/>
                            </div>
                         </div>
-                                        <!-- Table des Utilisateurs-->
+                <!-- Table des Utilisateurs-->
 
                      <table class="table table-bordered">
                             <thead>
                                 <tr>
-                                    <th></th>
-                                    <th>Utilisateur</th>                             
-                                    <th>Role</th>
-                                    <th>Ajouté</th>
-
-                                    
-                                    <th style="text-align: center;">Action</th>
+                                    <th style="text-align: center;"><b style="font-weight:bold;"> Avatar</b></th>
+                                    <th style="text-align: center;"><b style="font-weight:bold;"> Utilisateur</b></th>                             
+                                    <th style="text-align: center;"><b style="font-weight:bold;"> Role</b></th>
+                                    <th style="text-align: center;"><b style="font-weight:bold;"> Ajouté</b></th>    
+                                    <th style="text-align: center;"><b style="font-weight:bold;"> Action</b></th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @if ($users->count() > 0)
                                     @foreach ($users as $user)
                                         <tr>
-                                            <td>
+                                            <td class="text-center">
                                                 @if($user->sexe == "F")
                                                   <img src="{{asset('images/woman.png')}}" width="24"/>
                                                 @else
                                                   <img src="{{asset('images/man.png')}}" width="24"/>
                                                 @endif
                                             </td>
-                                            <td>{{ $user->name }}</td>
-                                            <td>{{ $user->allRoleNames}}</td>
+                                            <td class="text-center">{{ $user->name }}</td>
+                                            <td class="text-center">{{ $user->allRoleNames}}</td>
                                             <td class="text-center"><span class="tag tag-success">{{$user->created_at->diffForHumans()}}</span></td>
                                           
                                             <td style="text-align:center;">
@@ -94,9 +92,33 @@
                 </div>
 
                 <div class="modal-body ">
-                <form wire:submit.prevent="storeUserData" enctype="multipart/form-data">
-                    <div class="d-flex">                           
+                <form wire:submit.prevent="storeUserData" >
+                    {{-- <div class="d-flex" enctype="multipart/form-data">
+                        <div class="p-4" >
+                            <div class="form-group flex-grow-1 mr-2">
+                                <label for="photo">Photo :</label>
+                                <input type="file" id="photo" wire:model="photo" >
+                                @error('photo')
+                                    <span class="text-danger" style="font-size: 11.5px;">{{ $message }}</span>
+                                @enderror
+                            </div>
+                                
+                            <div style="border: 1px solid #d0d1d3; border-radius: 20px; height: 200px; width:200px; overflow:hidden;">
+                               @if ($photo)       
+                                  <img src="{{ $photo->temporaryUrl() }}">
+                               @endif
+                            </div>                                
+                        </div>
+                    </div> --}}
+                    <div class="d-flex"> 
                         <div class="form-group flex-grow-1 mr-2">
+                            <label for="user_id">ID Utilisateur :</label>
+                            <input type="number" id="user_id" class="form-control" wire:model="user_id">
+                                @error('user_id')
+                                    <span class="text-danger" style="font-size: 11.5px;">{{ $message }}</span>
+                                @enderror
+                        </div>                         
+                        <div class="form-group flex-grow-1">
                             <label for="name">Nom Prenom :</label>
                             <input type="text" id="name" class="form-control" wire:model="name">
                                 @error('name')
@@ -104,16 +126,30 @@
                                 @enderror
                         </div>
                         <div class="form-group flex-grow-1">
+                            <label for="role">Role :</label>
+                            <select id="role" class="form-control @error('role') is-invalid @enderror" wire:model="role">
+                                   <option value="">---------</option>
+                                   <option value="Admin">Admin</option>
+                                   <option value="Secretaire">Secretaire</option>
+                                   <option value="Medecin">Medecin</option>
+                                   <option value="Patient">Patient</option>
+                                   <option value="Medecin_Coordinateur">Medecin Coordinateur</option>
+                            </select>
+                                @error("role")
+                                <span class="text-danger">{{ $message }}</span>
+                                 @enderror                          
+                        </div>
+                        {{-- <div class="form-group flex-grow-1">
                             <label for="photo">Photo :</label>
                             <input type="file" id="photo" class="form-control" wire:model="photo">
                                 @error('photo')
                                     <span class="text-danger" style="font-size: 11.5px;">{{ $message }}</span>
                                 @enderror
-                        </div>
+                        </div> --}}
                     </div>
 
 
-                        <div class="d-flex">                           
+                    {{-- <div class="d-flex">                           
                         <div class="form-group flex-grow-1 mr-2">
                             <label for="date_naissance">Date Naissance :</label>
                             <input type="date" id="date_naissance" class="form-control" wire:model="date_naissance">
@@ -132,7 +168,7 @@
                                 <span class="text-danger">{{ $message }}</span>
                                  @enderror                          
                         </div>
-                    </div>
+                    </div> --}}
 
                     <div class="d-flex">                           
                         <div class="form-group flex-grow-1 mr-2">
@@ -151,7 +187,7 @@
                         </div>
                     </div>
 
-                    <div class="d-flex">                           
+                    {{-- <div class="d-flex">                           
                         <div class="form-group flex-grow-1 mr-2">
                             <label for="telephone1">Telephone 1 :</label>
                             <input type="number" id="telephone1" class="form-control" wire:model="telephone1">
@@ -166,8 +202,8 @@
                                     <span class="text-danger" style="font-size: 11.5px;">{{ $message }}</span>
                                 @enderror
                         </div>
-                    </div>
-                    <div class="d-flex">                           
+                    </div> --}}
+                    {{-- <div class="d-flex">                           
                         <div class="form-group flex-grow-1 mr-2">
                             <label for="pieceIdentite">Piece d'identité :</label>
                             <select id="pieceIdentite" class="form-control @error('pieceIdentite') is-invalid @enderror" wire:model="pieceIdentite">
@@ -187,11 +223,11 @@
                                     <span class="text-danger" style="font-size: 11.5px;">{{ $message }}</span>
                                 @enderror
                         </div>
-                    </div>
+                    </div> --}}
                         <div class="form-group row">
                             <label for="" class="col-3"></label>
                             <div class="col-9">
-                                <button type="submit" class="btn btn-sm btn-primary">Ajouter Utilisateur</button>
+                                <button type="submit" class="main_bt read_bt"><i class="fa fa-plus"></i><b style="font-weight:bold;"> Ajouter Utilisateur</b></button>
                             </div>
                         </div>
                     </form>
@@ -214,8 +250,15 @@
                 </div>
                 <div class="modal-body">
                     <form wire:submit.prevent="editUserData" enctype="multipart/form-data">                      
-                    <div class="d-flex">                           
-                        <div class="form-group flex-grow-1 mr-2">
+                    <div class="d-flex">
+                    <div class="form-group flex-grow-1 mr-2">
+                            <label for="user_id">ID Utilisateur :</label>
+                            <input type="number" id="user_id" class="form-control" wire:model="user_id">
+                                @error('user_id')
+                                    <span class="text-danger" style="font-size: 11.5px;">{{ $message }}</span>
+                                @enderror
+                        </div>  
+                        <div class="form-group flex-grow-1">
                             <label for="name">Nom Prenom :</label>
                             <input type="text" id="name" class="form-control" wire:model="name">
                                 @error('name')
@@ -223,16 +266,30 @@
                                 @enderror
                         </div>
                         <div class="form-group flex-grow-1">
+                            <label for="role">Role :</label>
+                            <select id="role" class="form-control @error('role') is-invalid @enderror" wire:model="role">
+                                   <option value="">---------</option>
+                                   <option value="Admin">Admin</option>
+                                   <option value="Secretaire">Secretaire</option>
+                                   <option value="Medecin">Medecin</option>
+                                   <option value="Patient">Patient</option>
+                                   <option value="Medecin_Coordinateur">Medecin Coordinateur</option>
+                            </select>
+                                @error("role")
+                                <span class="text-danger">{{ $message }}</span>
+                                 @enderror                          
+                        </div>
+                        {{-- <div class="form-group flex-grow-1">
                             <label for="photo">Photo :</label>
                             <input type="file" id="photo" class="form-control" wire:model="photo">
                                 @error('photo')
                                     <span class="text-danger" style="font-size: 11.5px;">{{ $message }}</span>
                                 @enderror
-                        </div>
+                        </div> --}}
                     </div>
 
 
-                        <div class="d-flex">                           
+                    {{-- <div class="d-flex">                           
                         <div class="form-group flex-grow-1 mr-2">
                             <label for="date_naissance">Date Naissance :</label>
                             <input type="date" id="date_naissance" class="form-control" wire:model="date_naissance">
@@ -251,7 +308,7 @@
                                 <span class="text-danger">{{ $message }}</span>
                                  @enderror                          
                         </div>
-                    </div>
+                    </div> --}}
 
                     <div class="d-flex">                           
                         <div class="form-group flex-grow-1 mr-2">
@@ -270,7 +327,7 @@
                         </div>
                     </div>
 
-                    <div class="d-flex">                           
+                    {{-- <div class="d-flex">                           
                         <div class="form-group flex-grow-1 mr-2">
                             <label for="telephone1">Telephone 1 :</label>
                             <input type="number" id="telephone1" class="form-control" wire:model="telephone1">
@@ -285,8 +342,8 @@
                                     <span class="text-danger" style="font-size: 11.5px;">{{ $message }}</span>
                                 @enderror
                         </div>
-                    </div>
-                    <div class="d-flex">                           
+                    </div> --}}
+                    {{-- <div class="d-flex">                           
                         <div class="form-group flex-grow-1 mr-2">
                             <label for="pieceIdentite">Piece d'identité :</label>
                             <select id="pieceIdentite" class="form-control @error('pieceIdentite') is-invalid @enderror" wire:model="pieceIdentite">
@@ -306,11 +363,11 @@
                                     <span class="text-danger" style="font-size: 11.5px;">{{ $message }}</span>
                                 @enderror
                         </div>
-                    </div>
+                    </div> --}}
                         <div class="form-group row">
                             <label for="" class="col-3"></label>
                             <div class="col-9">
-                                <button type="submit" class="btn btn-sm btn-primary">Ajouter Utilisateur</button>
+                                <button type="submit" class="main_bt read_bt"><i class="fa fa-check"></i><b style="font-weight:bold;"> Enregister les Modifications</b></button>
                             </div>
                         </div>
                     </form>
@@ -325,17 +382,17 @@
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Delete Confirmation</h5>
+                    <h5 class="modal-title">Confirmation de la Suppression</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body pt-4 pb-4">
-                    <h6>Are you sure? You want to delete this Utilisateur data!</h6>
+                    <h6>êtes-vous sûr de vouloir supprimer cet Utilisateur!</h6>
                 </div>
                 <div class="modal-footer">
-                    <button class="btn btn-sm btn-primary" wire:click="cancel()" data-dismiss="modal" aria-label="Close">Cancel</button>
-                    <button class="btn btn-sm btn-danger" wire:click="deleteUserData()">Yes! Delete</button>
+                    <button class="btn btn-sm btn-primary" wire:click="cancel()" data-dismiss="modal" aria-label="Close">Annuler</button>
+                    <button class="btn btn-sm btn-danger" wire:click="deleteUserData()">Oui! Supprimer</button>
                 </div>
             </div>
         </div>
@@ -359,7 +416,7 @@
                                 <th>Nom Prenom : </th>
                                 <td>{{ $view_user_name }}</td>
                             </tr>
-                            <tr>
+                            {{-- <tr>
                                 <th>Photo : </th>
                                 <td>{{ $view_user_photo }}</td>
                             </tr>
@@ -371,9 +428,7 @@
                             <tr>
                                 <th>Genre : </th>
                                 <td>{{ $view_user_sexe}}</td>
-                            </tr>
-
-
+                            </tr> --}}
                             <tr>
                                 <th>Email: </th>
                                 <td>{{ $view_user_email }}</td>
@@ -383,6 +438,10 @@
                                 <td>{{ $view_user_password }}</td>
                             </tr>
                             <tr>
+                                <th>Role: </th>
+                                <td>{{ $view_user_role }}</td>
+                            </tr>
+                            {{-- <tr>
                                 <th>Telephone 1: </th>
                                 <td>{{ $view_user_telephone1 }}</td>
                             </tr>
@@ -397,7 +456,7 @@
                             <tr>
                                 <th>Numero Piece d'Identité : </th>
                                 <td>{{ $view_user_numeroPieceIdentite }}</td>
-                            </tr>
+                            </tr> --}}
                         </tbody>
                     </table>
                 </div>
@@ -412,7 +471,6 @@
 </div>
 
 @push('scripts')
-
 <script>
         window.addEventListener('close-modal', event =>{
             $('#addUserModal').modal('hide');
@@ -435,10 +493,7 @@
             $('#viewUserModal').modal('show');
           
         });
-
-
-        
-    </script>
+</script>
 
 @endpush 
 

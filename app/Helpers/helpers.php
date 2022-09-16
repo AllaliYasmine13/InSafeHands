@@ -1,37 +1,31 @@
 <?php
 
 use Illuminate\Support\Str;
+use App\Models\User;
+use App\Models\Rdvs;
 
-
-define("PAGELIST", "liste");
-define("PAGECREATEFORM", "create");
-define("PAGEEDITFORM", "edit");
-
-define("DEFAULTPASSOWRD", "password");
-
-
+// function UserName(){
+//     return auth()->user()->nom . " " . auth()->user()->prenom;
+// }
 
 function userFullName(){
     return auth()->user()->name;
 }
 
-function setMenuClass($route, $classe){
-    $routeActuel = request()->route()->getName();
+function UserCounter(){
+    $data = DB::table('users')->count();
+    return collect($data);
+  }
 
-    if(contains($routeActuel, $route) ){
-        return $classe;
-    }
-    return "";
-}
+function RdvsCounter(){
+    $data = DB::table('rdvs')->count();
+    return collect($data);
+  }
 
-function setMenuActive($route){
-    $routeActuel = request()->route()->getName();
-
-    if($routeActuel === $route ){
-         return "active";
-     }
-     return "";
- }
+function PatientsCounter(){
+    $data = DB::table('patients_agees')->count();
+    return collect($data);
+  }
 
 function contains($container, $contenu){
     return Str::contains($container, $contenu);
@@ -56,33 +50,10 @@ function getRolesName(){
 
 }
 
-
-
-
-
 // function userFullName(){
 //     return auth()->user()->name;
 // }
 
 // function usergetEmail(){
 //     return auth()->user()->email;
-// }
-
-// function getRolesName(){
-//     $rolesName = "";
-//     $i = 0;
-//     foreach(auth()->user()->roles as $role){
-//         $rolesName .= $role->name;
-
-//         //
-//         if($i < sizeof(auth()->user()->roles) - 1 ){
-//             $rolesName .= ",";
-//         }
-
-//         $i++;
-
-//     }
-
-//     return $rolesName;
-
 // }

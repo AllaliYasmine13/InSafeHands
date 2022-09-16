@@ -12,6 +12,16 @@
       <meta name="keywords" content="">
       <meta name="description" content="">
       <meta name="author" content=""> 
+      <!--charts favico-->
+      <!-- Meta -->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta name="description" content="" />
+      <meta name="keywords" content="">
+      <meta name="author" content="Phoenixcoded" />
+      <!-- vendor css -->
+      <link rel="stylesheet" href="{{ asset('assets/css/style.css')}}">
+      <!--end charts favico-->
       <!-- site icon -->
       <link rel="icon" href="{{ asset ('images/logo/logo_o.png') }}" type="image/png" />
       <!-- bootstrap css -->
@@ -31,7 +41,7 @@
 
       {{-- Bootstrap Styles --}} 
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.3/css/bootstrap.min.css">
-      <link rel ="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css">
+      {{-- <link rel ="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css"> --}}
       <!---->
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
       @livewireStyles
@@ -60,7 +70,14 @@
              </div>
         </div>
       </div>
-
+      <!--charts script-->
+      <!-- Required Js --> 
+      <script src="{{ asset('js/vendor-all.min.js')}}"></script> 
+      {{-- <script src="{{ asset('js/plugins/bootstrap.min.js')}}"></script>
+      <script src="{{ asset('js/pcoded.min.js')}}"></script> --}}
+      <script src="{{ asset('js/plugins/apexcharts.min.js')}}"></script>
+      <script src="{{ asset('js/pages/chart-apex.js')}}"></script>
+      <!--end charts script--> 
       <!-- jQuery -->
       <script src="../../plugins/jquery/jquery.min.js"></script>
       <!-- Bootstrap 4 -->
@@ -95,10 +112,37 @@
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.min.js"></script>
       <!---->
       <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
-      <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
+      {{-- <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script> --}}
 
       @stack('scripts')
       @livewireScripts
 
    </body>
 </html>
+
+@push('scripts')
+<script>
+        window.addEventListener('close-modal', event =>{
+            $('#addUserModal').modal('hide');
+            $('#editUserModal').modal('hide');
+            $('#deleteUserModal').modal('hide');
+          
+        });
+
+        window.addEventListener('show-edit-user-modal', event =>{
+            $('#editUserModal').modal('show');
+          
+        });
+
+        window.addEventListener('show-delete-confirmation-modal', event =>{
+            $('#deleteUserModal').modal('show');
+          
+        });
+
+        window.addEventListener('show-view-user-modal', event =>{
+            $('#viewUserModal').modal('show');
+          
+        });
+</script>
+
+@endpush 

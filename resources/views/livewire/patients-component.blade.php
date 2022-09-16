@@ -41,7 +41,7 @@
                                     @foreach ($patients as $patient)
                                         <tr>
                                             <td>{{ $patient->patient_id }}</td>
-                                            <td>{{ $patient->nom_prenom }}</td>
+                                            <td>{{ $patient->nom}} {{ $patient->prenom}}</td>
                                             <td>{{ $patient->date }}</td>  
                                             <td class="text-align: center;"><span class="tag tag-success">{{$patient->created_at->diffForHumans()}}</span></td>                                          
                                             {{-- <td>{{ $patient->created_at }}</td> --}}
@@ -74,158 +74,185 @@
         <div class="modal-dialog modal-lg modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title"><i class="fa fa-user-plus"></i>  Add New Patient Agé</h5>
+                    <h5 class="modal-title"><i class="fa fa-user-plus"></i>  Ajouter Nouveau Patient Agé</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
 
-                <div class="modal-body ">
+            <div class="modal-body ">
                 <form wire:submit.prevent="storePatientData">
-                    <div class="form-group row">
-                            <label for="patient_id" class="col-3">Patient ID</label>
-                            <div class="col-9">
+                    <div class="d-flex">                           
+                        <div class="form-group flex-grow-1 mr-2">
+                            <label for="patient_id">Patient ID :</label>                
                                 <input type="number" id="patient_id" class="form-control" wire:model="patient_id">
                                 @error('patient_id')
                                     <span class="text-danger" style="font-size: 11.5px;">{{ $message }}</span>
                                 @enderror
-                            </div>
                         </div>
-
-
-                        <div class="form-group row">
-                            <label for="nom" class="col-3">Nom Prenom </label>
-                            <div class="col-9">
-                                <input type="text" id="nom_prenom" class="form-control" wire:model="nom_prenom">
-                                @error('nom_prenom')
+                        <div class="form-group flex-grow-1">
+                            <label for="nom">Nom :</label>
+                                <input type="text" id="nom" class="form-control" wire:model="nom">
+                                @error('nom')
                                     <span class="text-danger" style="font-size: 11.5px;">{{ $message }}</span>
                                 @enderror
-                            </div>
                         </div>
+                        <div class="form-group flex-grow-1">
+                            <label for="prenom">Prenom :</label>
+                                <input type="text" id="prenom" class="form-control" wire:model="prenom">
+                                @error('prenom')
+                                    <span class="text-danger" style="font-size: 11.5px;">{{ $message }}</span>
+                                @enderror
+                        </div>
+                    </div>
 
-                        <div class="form-group row">
-                            <label for="date" class="col-3">Date de Naissance</label>
-                            <div class="col-9">
+                    <div class="d-flex">                           
+                        <div class="form-group flex-grow-1 mr-2">
+                            <label for="date">Date Naissance :</label>
                                 <input type="date" id="date" class="form-control" wire:model="date">
                                 @error('date')
                                     <span class="text-danger" style="font-size: 11.5px;">{{ $message }}</span>
                                 @enderror
-                            </div>
                         </div>
-
-                        <div class="form-group row">
-                            <label for="poid" class="col-3">Poid</label>
-                            <div class="col-9">
-                                <input type="number" id="poid" class="form-control" wire:model="poid">
-                                @error('poid')
-                                    <span class="text-danger" style="font-size: 11.5px;">{{ $message }}</span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="taille" class="col-3">Taille</label>
-                            <div class="col-9">
-                                <input type="number" id="taille" class="form-control" wire:model="taille">
-                                @error('taille')
-                                    <span class="text-danger" style="font-size: 11.5px;">{{ $message }}</span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="maladie_chronique" class="col-3">Maladie Chronique</label>
-                            <div class="col-9">
-                                <input type="text" id="maladie_chronique" class="form-control" wire:model="maladie_chronique">
-                                @error('maladie_chronique')
-                                    <span class="text-danger" style="font-size: 11.5px;">{{ $message }}</span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="adresse" class="col-3">Adresse</label>
-                            <div class="col-9">
+                        <div class="form-group flex-grow-1">
+                            <label for="adresse">Adresse :</label>
                                 <input type="text" id="adresse" class="form-control" wire:model="adresse">
                                 @error('adresse')
                                     <span class="text-danger" style="font-size: 11.5px;">{{ $message }}</span>
                                 @enderror
-                            </div>
+                        </div>
+                  </div>
+                    <div class="d-flex">                           
+                        <div class="form-group flex-grow-1 mr-2">
+                            <label for="poid">Poid ( kg ) :</label>
+                                <input type="number" id="poid" class="form-control" wire:model="poid">
+                                @error('poid')
+                                    <span class="text-danger" style="font-size: 11.5px;">{{ $message }}</span>
+                                @enderror
                         </div>
 
-                        <div class="form-group row">
-                            <label for="telephone" class="col-3">Telephone</label>
-                            <div class="col-9">
+                        <div class="form-group flex-grow-1">
+                            <label for="taille">Taille (cm) :</label>
+                            <input type="number" id="taille" class="form-control" wire:model="taille">
+                                @error('taille')
+                                    <span class="text-danger" style="font-size: 11.5px;">{{ $message }}</span>
+                                @enderror
+                        </div>
+
+                        <div class="form-group flex-grow-1">
+                            <label for="maladie_chronique">Maladie Chronique :</label>
+                               <select id="maladie_chronique" class="form-control @error('maladie_chronique') is-invalid @enderror" wire:model="maladie_chronique">
+                                <option value="">---------</option>
+                                <option value="Maladies cardiovasculaires">Maladies cardiovasculaires</option>
+                                <option value="Maladies endocriniennes">Maladies endocriniennes</option>
+                                <option value="Maladies digestives">Maladies digestives</option>
+                                <option value="Maladies neurologiques et musculaires">Maladies neurologiques et musculaires</option>
+                                <option value="Maladies gynécologiques urinaires">Maladies gynécologiques urinaires</option>
+                                <option value="Maladies gynécologiques rénales">Maladies gynécologiques rénales </option>
+                                <option value="Maladies de la peau">Maladies de la peau</option>
+                                <option value="Maladies des yeux">Maladies des yeux</option>
+                                <option value="Maladies hématologiques">Maladies hématologiques</option>
+                            </select>
+                            @error('maladie_chronique')
+                                <span class="text-danger" style="font-size: 11.5px;">{{ $message }}</span>
+                            @enderror
+                        </div>
+                    </div>
+
+                    <div class="d-flex">                           
+                        <div class="form-group flex-grow-1 mr-2">
+                            <label for="telephone">Telephone</label>
                                 <input type="number" id="telephone" class="form-control" wire:model="telephone">
                                 @error('telephone')
                                     <span class="text-danger" style="font-size: 11.5px;">{{ $message }}</span>
                                 @enderror
-                            </div>
                         </div>
-
-                        <div class="form-group row">
-                            <label for="email" class="col-3">Email</label>
-                            <div class="col-9">
+                        <div class="form-group flex-grow-1">
+                            <label for="email">Email</label>
                                 <input type="email" id="email" class="form-control" wire:model="email">
                                 @error('email')
                                     <span class="text-danger" style="font-size: 11.5px;">{{ $message }}</span>
                                 @enderror
-                            </div>
+                        </div>
+                    </div>
+                    <div class="d-flex">                           
+                        <div class="form-group flex-grow-1 mr-2">
+                            <label for="medecin_traitant">Médecin Traitant</label>
+                             <select id="medecin_traitant" class="form-control @error('medecin_traitant') is-invalid @enderror" wire:model="medecin_traitant">
+                                <option value="">---------</option>
+                                <option value="Mme Halfaoui Amel -Généraliste-">Mme Halfaoui Amel -Généraliste-</option>
+                                <option value="Mr Korso Mourad -Neurologue-">Mr Korso Mourad -Neurologue-</option>
+                                <option value="Mr Ait Abdelrahim -ORL-">Mr Ait Abdelrahim -ORL-</option>
+                                <option value="Mme tadlaoui Meryem -Psycologue-">Mme tadlaoui Meryem -Psycologue-</option>
+                                <option value="Mr Azzouni Youcef -Ophtalmologue-">Mr Azzouni Youcef -Ophtalmologue-</option>
+                                <option value="Mr Aissaoui Kamel -Neufrologue-">Mr Aissaoui Kamel -Neufrologue-</option>
+                                <option value="Mr Benmoussa Anes -Traumatologue-">Mr Benmoussa Anes -Traumatologue-</option>
+                                <option value="Mr Benachenhou Karim -Dantiste-">Mr Benachenhou Karim -Dantiste-</option>
+                               
+                            </select>
+                            @error('medecin_traitant')
+                                <span class="text-danger" style="font-size: 11.5px;">{{ $message }}</span>
+                            @enderror
                         </div>
 
-                        <div class="form-group row">
-                            <label for="medecin_traitant" class="col-3">Médecin Traitant</label>
-                            <div class="col-9">
-                                <input type="text" id="medecin_traitant" class="form-control" wire:model="medecin_traitant">
-                                @error('medecin_traitant')
-                                    <span class="text-danger" style="font-size: 11.5px;">{{ $message }}</span>
-                                @enderror
-                            </div>
+                        <div class="form-group flex-grow-1">
+                            <label for="adressee_par">Adressé Par :</label>
+                             <select id="adressee_par" class="form-control @error('adressee_par') is-invalid @enderror" wire:model="adressee_par">
+                                <option value="">---------</option>
+                                <option value="Mr Allali Youcef -Chef de service-">Mr Allali Youcef -Chef de service-</option>
+                                <option value="Mme Allali Yasmine -Medecin Coordinatrice-">Mme Allali Yasmine -Medecin Coordinatrice-</option>
+                                <option value="Mr Ait Abdelrahim -responsable Général-">Mr Ait Abdelrahim -responsable Général-</option>
+                                <option value="Mme tadlaoui Meryem -responsable-">Mme tadlaoui Meryem -responsable-</option>
+                                <option value="Mme Azzouni Youssra -Directrice générale-">Mme Azzouni Youssra -Directrice générale-</option>            
+                            </select>
+                            @error('adressee_par')
+                                <span class="text-danger" style="font-size: 11.5px;">{{ $message }}</span>
+                            @enderror
                         </div>
-
-                        <div class="form-group row">
-                            <label for="adressee_par" class="col-3">Adressé Par</label>
-                            <div class="col-9">
-                                <input type="text" id="adressee_par" class="form-control" wire:model="adressee_par">
-                                @error('medecin_traitant')
-                                    <span class="adressee_par" style="font-size: 11.5px;">{{ $message }}</span>
-                                @enderror
-                            </div>
+                    </div>
+                    <div class="d-flex">                           
+                        <div class="form-group flex-grow-1 mr-2">
+                            <label for="assurance_maladie">Sécurité Social :</label>
+                            <select id="securite_social" class="form-control @error('securite_social') is-invalid @enderror" wire:model="securite_social">
+                                <option value="">---------</option>
+                                <option value="CNAS">CNAS</option>
+                                <option value="CASNOS">CASNOS</option>
+                                <option value="AUTRE">AUTRE</option>             
+                            </select>
+                            @error('securite_social')
+                                <span class="text-danger" style="font-size: 11.5px;">{{ $message }}</span>
+                            @enderror
                         </div>
-
-                        <div class="form-group row">
-                            <label for="assurance_maladie" class="col-3">Assurance Maladie</label>
-                            <div class="col-9">
+                        <div class="form-group flex-grow-1">
+                            <label for="assurance_maladie">N° Assurance :</label>
                                 <input type="number" id="assurance_maladie" class="form-control" wire:model="assurance_maladie">
                                 @error('assurance_maladie')
                                     <span class="assurance_maladie" style="font-size: 11.5px;">{{ $message }}</span>
                                 @enderror
-                            </div>
                         </div>
-
-                        <div class="form-group row">
-                            <label for="nom_contact_urgence" class="col-3">Nom de Contatct en cas d'urgence</label>
-                            <div class="col-9">
+                  </div>
+                        
+                    <div class="d-flex">                           
+                        <div class="form-group flex-grow-1 mr-2">
+                            <label for="nom_contact_urgence">Nom de Contatct en cas d'urgence :</label>
                                 <input type="text" id="nom_contact_urgence" class="form-control" wire:model="nom_contact_urgence">
                                 @error('nom_contact_urgence')
                                     <span class="nom_contact_urgence" style="font-size: 11.5px;">{{ $message }}</span>
                                 @enderror
-                            </div>
                         </div>
 
-                        <div class="form-group row">
-                            <label for="tel_contact_urgence" class="col-3">Telephone de contatct en cas d'urgence</label>
-                            <div class="col-9">
+                        <div class="form-group flex-grow-1">
+                            <label for="tel_contact_urgence">Telephone de contatct en cas d'urgence :</label>
                                 <input type="text" id="tel_contact_urgence" class="form-control" wire:model="tel_contact_urgence">
                                 @error('tel_contact_urgence')
                                     <span class="tel_contact_urgence" style="font-size: 11.5px;">{{ $message }}</span>
                                 @enderror
-                            </div>
                         </div>
+                    </div>
                         <div class="form-group row">
                             <label for="" class="col-3"></label>
                             <div class="col-9">
-                                <button type="submit" class="btn btn-sm btn-primary">Add Patient Agé</button>
+                                <button type="submit" class="main_bt read_bt"><i class="fa fa-plus"></i><b style="font-weight:bold;"> Ajouter Patient Agé</b></button>
                             </div>
                         </div>
                     </form>
@@ -241,162 +268,187 @@
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Edit Patient Agé</h5>
+                    <h5 class="modal-title">Modifier les informations d'un Patient Agé</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close" wire:click="close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-
-
                     <form wire:submit.prevent="editPatientData">
-                    <div class="form-group row">
-                            <label for="patient_id" class="col-3">Patient ID</label>
-                            <div class="col-9">
+                    <div class="d-flex">                           
+                        <div class="form-group flex-grow-1 mr-2">
+                            <label for="patient_id">Patient ID :</label>                
                                 <input type="number" id="patient_id" class="form-control" wire:model="patient_id">
                                 @error('patient_id')
                                     <span class="text-danger" style="font-size: 11.5px;">{{ $message }}</span>
                                 @enderror
-                            </div>
                         </div>
-
-
-                        <div class="form-group row">
-                            <label for="nom_prenom" class="col-3">Nom Prenom </label>
-                            <div class="col-9">
-                                <input type="text" id="nom_prenom" class="form-control" wire:model="nom_prenom">
-                                @error('nom_prenom')
+                         <div class="form-group flex-grow-1">
+                            <label for="nom">Nom :</label>
+                                <input type="text" id="nom" class="form-control" wire:model="nom">
+                                @error('nom')
                                     <span class="text-danger" style="font-size: 11.5px;">{{ $message }}</span>
                                 @enderror
-                            </div>
                         </div>
+                        <div class="form-group flex-grow-1">
+                            <label for="prenom">Prenom :</label>
+                                <input type="text" id="prenom" class="form-control" wire:model="prenom">
+                                @error('prenom')
+                                    <span class="text-danger" style="font-size: 11.5px;">{{ $message }}</span>
+                                @enderror
+                        </div>
+                    </div>
 
-                        <div class="form-group row">
-                            <label for="date" class="col-3">Date de Naissance</label>
-                            <div class="col-9">
+                    <div class="d-flex">                           
+                        <div class="form-group flex-grow-1 mr-2">
+                            <label for="date">Date Naissance :</label>
                                 <input type="date" id="date" class="form-control" wire:model="date">
                                 @error('date')
                                     <span class="text-danger" style="font-size: 11.5px;">{{ $message }}</span>
                                 @enderror
-                            </div>
                         </div>
-
-                        <div class="form-group row">
-                            <label for="poid" class="col-3">Poid</label>
-                            <div class="col-9">
-                                <input type="number" id="poid" class="form-control" wire:model="poid">
-                                @error('poid')
-                                    <span class="text-danger" style="font-size: 11.5px;">{{ $message }}</span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="taille" class="col-3">Taille</label>
-                            <div class="col-9">
-                                <input type="number" id="taille" class="form-control" wire:model="taille">
-                                @error('taille')
-                                    <span class="text-danger" style="font-size: 11.5px;">{{ $message }}</span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="maladie_chronique" class="col-3">Maladie Chronique</label>
-                            <div class="col-9">
-                                <input type="text" id="maladie_chronique" class="form-control" wire:model="maladie_chronique">
-                                @error('maladie_chronique')
-                                    <span class="text-danger" style="font-size: 11.5px;">{{ $message }}</span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="adresse" class="col-3">Adresse</label>
-                            <div class="col-9">
+                        <div class="form-group flex-grow-1">
+                            <label for="adresse">Adresse :</label>
                                 <input type="text" id="adresse" class="form-control" wire:model="adresse">
                                 @error('adresse')
                                     <span class="text-danger" style="font-size: 11.5px;">{{ $message }}</span>
                                 @enderror
-                            </div>
+                        </div>
+                  </div>
+                    <div class="d-flex">                           
+                        <div class="form-group flex-grow-1 mr-2">
+                            <label for="poid">Poid ( kg ) :</label>
+                                <input type="number" id="poid" placeholder="Kilogrammes" class="form-control" wire:model="poid">
+                                @error('poid')
+                                    <span class="text-danger" style="font-size: 11.5px;">{{ $message }}</span>
+                                @enderror
                         </div>
 
-                        <div class="form-group row">
-                            <label for="telephone" class="col-3">Telephone</label>
-                            <div class="col-9">
-                                <input type="telephone" id="telephone" class="form-control" wire:model="telephone">
+                        <div class="form-group flex-grow-1">
+                            <label for="taille">Taille (cm) :</label>
+                            <input type="number" id="taille" placeholder="centimètre" class="form-control" wire:model="taille">
+                                @error('taille')
+                                    <span class="text-danger" style="font-size: 11.5px;">{{ $message }}</span>
+                                @enderror
+                        </div>
+
+                        <div class="form-group flex-grow-1">
+                            <label for="maladie_chronique">Maladie Chronique :</label>
+                               <select id="maladie_chronique" class="form-control @error('maladie_chronique') is-invalid @enderror" wire:model="maladie_chronique">
+                                <option value="">---------</option>
+                                <option value="Maladies cardiovasculaires">Maladies cardiovasculaires</option>
+                                <option value="Maladies endocriniennes">Maladies endocriniennes</option>
+                                <option value="Maladies digestives">Maladies digestives</option>
+                                <option value="Maladies neurologiques et musculaires">Maladies neurologiques et musculaires</option>
+                                <option value="Maladies gynécologiques urinaires">Maladies gynécologiques urinaires</option>
+                                <option value="Maladies gynécologiques rénales">Maladies gynécologiques rénales </option>
+                                <option value="Maladies de la peau">Maladies de la peau</option>
+                                <option value="Maladies des yeux">Maladies des yeux</option>
+                                <option value="Maladies hématologiques">Maladies hématologiques</option>
+                            </select>
+                            @error('maladie_chronique')
+                                <span class="text-danger" style="font-size: 11.5px;">{{ $message }}</span>
+                            @enderror
+                        </div>
+                    </div>
+
+                    <div class="d-flex">                           
+                        <div class="form-group flex-grow-1 mr-2">
+                            <label for="telephone">Telephone</label>
+                                <input type="number" id="telephone" class="form-control" wire:model="telephone">
                                 @error('telephone')
                                     <span class="text-danger" style="font-size: 11.5px;">{{ $message }}</span>
                                 @enderror
-                            </div>
                         </div>
-
-                        <div class="form-group row">
-                            <label for="email" class="col-3">Email</label>
-                            <div class="col-9">
+                        <div class="form-group flex-grow-1">
+                            <label for="email">Email</label>
                                 <input type="email" id="email" class="form-control" wire:model="email">
                                 @error('email')
                                     <span class="text-danger" style="font-size: 11.5px;">{{ $message }}</span>
                                 @enderror
-                            </div>
+                        </div>
+                    </div>
+                    <div class="d-flex">                           
+                        <div class="form-group flex-grow-1 mr-2">
+                            <label for="medecin_traitant">Médecin Traitant</label>
+                             <select id="medecin_traitant" class="form-control @error('medecin_traitant') is-invalid @enderror" wire:model="medecin_traitant">
+                                <option value="">---------</option>
+                                <option value="Mme Halfaoui Amel -Généraliste-">Mme Halfaoui Amel -Généraliste-</option>
+                                <option value="Mr Korso Mourad -Neurologue-">Mr Korso Mourad -Neurologue-</option>
+                                <option value="Mr Ait Abdelrahim -ORL-">Mr Ait Abdelrahim -ORL-</option>
+                                <option value="Mme tadlaoui Meryem -Psycologue-">Mme tadlaoui Meryem -Psycologue-</option>
+                                <option value="Mr Azzouni Youcef -Ophtalmologue-">Mr Azzouni Youcef -Ophtalmologue-</option>
+                                <option value="Mr Aissaoui Kamel -Neufrologue-">Mr Aissaoui Kamel -Neufrologue-</option>
+                                <option value="Mr Benmoussa Anes -Traumatologue-">Mr Benmoussa Anes -Traumatologue-</option>
+                                <option value="Mr Benachenhou Karim -Dantiste-">Mr Benachenhou Karim -Dantiste-</option>
+                               
+                            </select>
+                            @error('medecin_traitant')
+                                <span class="text-danger" style="font-size: 11.5px;">{{ $message }}</span>
+                            @enderror
                         </div>
 
-                        <div class="form-group row">
-                            <label for="medecin_traitant" class="col-3">Médecin Traitant</label>
-                            <div class="col-9">
-                                <input type="text" id="medecin_traitant" class="form-control" wire:model="medecin_traitant">
-                                @error('medecin_traitant')
-                                    <span class="text-danger" style="font-size: 11.5px;">{{ $message }}</span>
-                                @enderror
-                            </div>
+                        <div class="form-group flex-grow-1">
+                            <label for="adressee_par">Adressé Par :</label>
+                             <select id="adressee_par" class="form-control @error('adressee_par') is-invalid @enderror" wire:model="adressee_par">
+                                <option value="">---------</option>
+                                <option value="Mr Allali Youcef -Chef de service-">Mr Allali Youcef -Chef de service-</option>
+                                <option value="Mme Allali Yasmine -Medecin Coordinatrice-">Mme Allali Yasmine -Medecin Coordinatrice-</option>
+                                <option value="Mr Ait Abdelrahim -responsable Général-">Mr Ait Abdelrahim -responsable Général-</option>
+                                <option value="Mme tadlaoui Meryem -responsable-">Mme tadlaoui Meryem -responsable-</option>
+                                <option value="Mme Azzouni Youssra -Directrice générale-">Mme Azzouni Youssra -Directrice générale-</option>            
+                            </select>
+                            @error('adressee_par')
+                                <span class="text-danger" style="font-size: 11.5px;">{{ $message }}</span>
+                            @enderror
                         </div>
-
-                        <div class="form-group row">
-                            <label for="adressee_par" class="col-3">Adressé Par</label>
-                            <div class="col-9">
-                                <input type="text" id="adressee_par" class="form-control" wire:model="adressee_par">
-                                @error('medecin_traitant')
-                                    <span class="adressee_par" style="font-size: 11.5px;">{{ $message }}</span>
-                                @enderror
-                            </div>
+                    </div>
+                    <div class="d-flex">                           
+                        <div class="form-group flex-grow-1 mr-2">
+                            <label for="securite_social">Sécurité Social :</label>
+                            <select id="securite_social" class="form-control @error('securite_social') is-invalid @enderror" wire:model="securite_social">
+                                <option value="">---------</option>
+                                <option value="CNAS">CNAS</option>
+                                <option value="CASNOS">CASNOS</option>
+                                <option value="AUTRE">AUTRE</option>             
+                            </select>
+                            @error('securite_social')
+                                <span class="text-danger" style="font-size: 11.5px;">{{ $message }}</span>
+                            @enderror
                         </div>
-
-                        <div class="form-group row">
-                            <label for="assurance_maladie" class="col-3">Assurance Maladie</label>
-                            <div class="col-9">
+                        <div class="form-group flex-grow-1">
+                            <label for="assurance_maladie">N° Assurance :</label>
                                 <input type="number" id="assurance_maladie" class="form-control" wire:model="assurance_maladie">
                                 @error('assurance_maladie')
                                     <span class="assurance_maladie" style="font-size: 11.5px;">{{ $message }}</span>
                                 @enderror
-                            </div>
                         </div>
-
-                        <div class="form-group row">
-                            <label for="nom_contact_urgence" class="col-3">Nom de Contatct en cas d'urgence</label>
-                            <div class="col-9">
+                  </div>
+                        
+                    <div class="d-flex">                           
+                        <div class="form-group flex-grow-1 mr-2">
+                            <label for="nom_contact_urgence">Nom de Contatct en cas d'urgence :</label>
                                 <input type="text" id="nom_contact_urgence" class="form-control" wire:model="nom_contact_urgence">
                                 @error('nom_contact_urgence')
                                     <span class="nom_contact_urgence" style="font-size: 11.5px;">{{ $message }}</span>
                                 @enderror
-                            </div>
                         </div>
 
-                        <div class="form-group row">
-                            <label for="tel_contact_urgence" class="col-3">Telephone de contatct en cas d'urgence</label>
-                            <div class="col-9">
+                        <div class="form-group flex-grow-1">
+                            <label for="tel_contact_urgence">Telephone de contatct en cas d'urgence :</label>
                                 <input type="text" id="tel_contact_urgence" class="form-control" wire:model="tel_contact_urgence">
                                 @error('tel_contact_urgence')
                                     <span class="tel_contact_urgence" style="font-size: 11.5px;">{{ $message }}</span>
                                 @enderror
-                            </div>
                         </div>
-
+                    </div>
                         <div class="form-group row">
                             <label for="" class="col-3"></label>
                             <div class="col-9">
-                                <button type="submit" class="btn btn-sm btn-primary">Edit Patient Agé</button>
+                                <button type="submit" class="main_bt read_bt"><i class="fa fa-check"></i><b style="font-weight:bold;"> Enregister les Modifications</b></button>
                             </div>
                         </div>
+        
                     </form>
                 </div>
             </div>
@@ -413,13 +465,13 @@
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Delete Confirmation</h5>
+                    <h5 class="modal-title">Confirmation de la Suppression</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body pt-4 pb-4">
-                    <h6>Are you sure? You want to delete this Patient Agé data!</h6>
+                    <h6>Etes-vous sùre de vouloir supprimer cet Patient Agé!!</h6>
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-sm btn-primary" wire:click="cancel()" data-dismiss="modal" aria-label="Close">Cancel</button>
@@ -437,7 +489,7 @@
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Patient Agé Information</h5>
+                    <h5 class="modal-title">Patient Agé Informations</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close" wire:click="closeViewPatientModal">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -446,59 +498,66 @@
                     <table class="table table-bordered">
                         <tbody>
                             <tr>
-                                <th>ID: </th>
+                                <th>ID : </th>
                                 <td>{{ $view_patient_id }}</td>
                             </tr>
 
                             <tr>
-                                <th>Nom Prenom: </th>
-                                <td>{{ $view_patient_nom_prenom }}</td>
+                                <th>Nom : </th>
+                                <td>{{ $view_patient_nom }}</td>
+                            </tr>
+                            <tr>
+                                <th>Prenom : </th>
+                                <td>{{ $view_patient_prenom }}</td>
                             </tr>
 
                             <tr>
-                                <th>Date de Naissance: </th>
+                                <th>Date de Naissance : </th>
                                 <td>{{ $view_patient_date}}</td>
                             </tr>
 
                             <tr>
-                                <th>Poid: </th>
+                                <th>Poid : </th>
                                 <td>{{ $view_patient_poid }}</td>
                             </tr>
                             <tr>
-                                <th>Taille: </th>
+                                <th>Taille : </th>
                                 <td>{{ $view_patient_taille }}</td>
                             </tr>
                             
                             <tr>
-                                <th>Maladie Chronique: </th>
+                                <th>Maladie Chronique : </th>
                                 <td>{{ $view_patient_maladie_chronique }}</td>
                             </tr>
 
                             <tr>
-                                <th>Adresse: </th>
+                                <th>Adresse : </th>
                                 <td>{{ $view_patient_adresse }}</td>
                             </tr>
                             
                             <tr>
-                                <th>Telephone: </th>
+                                <th>Telephone : </th>
                                 <td>{{ $view_patient_telephone}}</td>
                             </tr>
                             <tr>
-                                <th>Email: </th>
+                                <th>Email : </th>
                                 <td>{{ $view_patient_email }}</td>
                             </tr>
                             <tr>
-                                <th>Medecin Traitant: </th>
+                                <th>Medecin Traitant : </th>
                                 <td>{{ $view_patient_medecin_traitant }}</td>
                             </tr>
                             
                             <tr>
-                                <th>Adressé Par: </th>
+                                <th>Adressé Par : </th>
                                 <td>{{ $view_patient_adressee_par }}</td>
                             </tr>
-
                             <tr>
-                                <th>Assurance Maladie: </th>
+                                <th>Sécurité Social : </th>
+                                <td>{{ $view_patient_securite_social }}</td>
+                            </tr>
+                            <tr>
+                                <th>Assurance Maladie : </th>
                                 <td>{{ $view_patient_assurance_maladie }}</td>
                             </tr>
 

@@ -4,7 +4,7 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="dash_head">
-                        <h3 style="float: left;"><span><i class="fa fa-pencil-square-o fa-2x"></i><b style="font-weight:bold;"><font size="+2"> Liste des Ordonnances</font></b></span></h3>
+                        <h3 style="float: left;"><span><i class="fa fa-pencil-square-o fa-2x"></i><b style="font-weight:bold;"><font size="+2"> Liste des Fiche Navettes</font></b></span></h3>
                         <button class="main_bt read_bt" style="float: right;" data-toggle="modal" data-target="#addFicheNavetteModal"><i class="fa fa-plus"></i><b style="font-weight:bold;">Ajouter Fiche Navette</b></button>
                     </div>
 
@@ -43,18 +43,17 @@
                                             <td>{{ $fiche_navette->Nom }} {{ $fiche_navette->prenom }}</td>                                                                                          
                                             <td>{{ $fiche_navette->created_at}}</td>   
                                                           
-                                            {{-- <td style="text-align:center;">
-                                                <button class="btn btn-sm btn-link" wire:click="viewOrdonnanceDetails({{ $ordonnance->id }})"> <i class="fa fa-info-circle fa-2x green_color"></i> </button>
-                                                <button class="btn btn-sm btn-link" wire:click="editOrdonnance({{ $ordonnance->id }})"> <i class="fa fa-edit fa-2x blue2_color"></i> </button>
-                                                <button class="btn btn-sm btn-link" wire:click="deleteConfirmation({{ $ordonnance->id }})"> <i class="fa fa-trash-o fa-2x orange_color"></i> </button>
+                                            <td style="text-align:center;">
+                                                <button class="btn btn-sm btn-link" wire:click="viewFicheNavetteDetails({{ $fiche_navette->id }})"> <i class="fa fa-info-circle fa-2x green_color"></i> </button>
+                                                <button class="btn btn-sm btn-link" wire:click="editFicheNavette({{ $fiche_navette->id }})"> <i class="fa fa-edit fa-2x blue2_color"></i> </button>
+                                                <button class="btn btn-sm btn-link" wire:click="deleteConfirmation({{ $fiche_navette->id }})"> <i class="fa fa-trash-o fa-2x orange_color"></i> </button>
                                                 <button class="btn btn-sm btn-link" wire:click=""> <i class="fa fa-print fa-2x" style="color:black"></i> </button>
-                                            </td> --}}
-                                            <td style="text-align: center;">
+                                            </td> 
+                                            {{-- <td style="text-align: center;">
                                                 <button class="btn btn-sm btn-secondary" wire:click="viewFicheNavetteDetails({{ $fiche_navette->id }})">View</button>
                                                 <button class="btn btn-sm btn-primary" wire:click="editFicheNavette({{ $fiche_navette->id }})">Edit</button>
                                                 <button class="btn btn-sm btn-danger" wire:click="deleteConfirmation({{ $fiche_navette->id }})">Delete</button>
-                                            </td>
-
+                                            </td> --}}
                                         </tr>
                                     @endforeach
                                 @endif
@@ -590,7 +589,7 @@
                        <div class="form-group row">
                             <label for="" class="col-3"></label>
                             <div class="col-9">
-                                <button type="submit" class="main_bt read_bt"><i class="fa fa-plus"></i><b style="font-weight:bold;"> Enregistrer Les Modifications</b></button>
+                                <button type="submit" class="main_bt read_bt"><i class="fa fa-check"></i><b style="font-weight:bold;"> Enregistrer Les Modifications</b></button>
                             </div>
                         </div>  
                     </form>

@@ -25,14 +25,12 @@ class HomeController extends Controller
     public function index()
     {
         return view('home');
+        // $count = DB::table('users')->count();
+        // return view('home', compact('count'));
     }
 
     public function Calendar(){
         return view ('calendar');
-    }// end method
-
-    public function Gestion_Rdvs(){
-        return view ('gestion_des_rdvs');
     }// end method
 
     

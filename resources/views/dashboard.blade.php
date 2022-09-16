@@ -25,7 +25,12 @@
                     @endcan
 
                    <!--patient-->
-                   @can("Patient")
+                    @can("Patient")
                        <x-patient_dashboard/>   
-                  @endcan
+                    @endcan
+
+                    {{-- @cannot("Medecin_Coordinateur")
+                      <x-admin_dashboard/> 
+                      
+                    @endcannot --}}
 @endsection

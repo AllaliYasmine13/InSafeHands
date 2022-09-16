@@ -20,16 +20,17 @@ class UserFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->name(),
-            'sexe' => array_rand(["H", "F"], 1),
-            'email' => $this->faker->unique()->safeEmail(),
-            'email_verified_at' => now(),
-            'telephone' => $this->faker->unique()->phoneNumber,
-            'pieceIdentite' => array_rand(["CNI", "PASSPORT", "PERMIS DE CONDUIRE"], 1),
-            'numeroPieceIdentite' => $this->faker->unique()->bankAccountNumber,
-            'photo' => $this->faker->imageUrl(),
-            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-            'remember_token' => Str::random(10),
+          'name' => $this->faker->name(),
+          'sexe' => array_rand(["H", "F"], 1),
+          'date_naissance' => $this->faker->date_naissance('Y_m_d'),
+          'email' => $this->faker->unique()->safeEmail(),
+          'email_verified_at' => now(),
+          'telephone' => $this->faker->unique()->phoneNumber,
+          'pieceIdentite' => array_rand(["CARTE NATIONAL", "PASSPORT", "PERMIS DE CONDUIRE"], 1),
+          'numeroPieceIdentite' => $this->faker->unique()->bankAccountNumber,
+          'photo' => $this->faker->imageUrl(),
+          'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+          'remember_token' => Str::random(10),
         ];
     }
 

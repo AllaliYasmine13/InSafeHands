@@ -29,7 +29,7 @@
                                 <tr>
                                     <th><b style="font-weight:bold;">ID Ordonnance</b></th>
                                     <th><b style="font-weight:bold;">Date Ordonnance</b></th>   
-                                    <th><b style="font-weight:bold;">Nom Prenom</b></th>                                 
+                                    <th><b style="font-weight:bold;">Nom Prenom</b></th>                                
                                     <th><b style="font-weight:bold;">Ajouté</b></th>                                                                                                                                             
                                     <th style="text-align: center;"><b style="font-weight:bold;">Action</b></th>
                                 </tr>
@@ -40,20 +40,20 @@
                                         <tr>
                                             <td>{{ $ordonnance->ordonnance_id }}</td>
                                             <td>{{ $ordonnance->date_ordonnance}}</td> 
-                                            <td>{{ $ordonnance->Nom }} {{ $ordonnance->prenom }}</td>                                                                                          
-                                            <td>{{ $ordonnance->created_at}}</td>   
+                                            <td>{{ $ordonnance->nom }} {{ $ordonnance->prenom }}</td>                                                                                        
+                                            <td class="text-align: center;"><span class="tag tag-success">{{$ordonnance->created_at->diffForHumans()}}</span></td>   
                                                           
-                                            {{-- <td style="text-align:center;">
+                                            <td style="text-align:center;">
                                                 <button class="btn btn-sm btn-link" wire:click="viewOrdonnanceDetails({{ $ordonnance->id }})"> <i class="fa fa-info-circle fa-2x green_color"></i> </button>
                                                 <button class="btn btn-sm btn-link" wire:click="editOrdonnance({{ $ordonnance->id }})"> <i class="fa fa-edit fa-2x blue2_color"></i> </button>
                                                 <button class="btn btn-sm btn-link" wire:click="deleteConfirmation({{ $ordonnance->id }})"> <i class="fa fa-trash-o fa-2x orange_color"></i> </button>
                                                 <button class="btn btn-sm btn-link" wire:click=""> <i class="fa fa-print fa-2x" style="color:black"></i> </button>
-                                            </td> --}}
-                                            <td style="text-align: center;">
+                                            </td>
+                                            {{-- <td style="text-align: center;">
                                                 <button class="btn btn-sm btn-secondary" wire:click="viewOrdonnanceDetails({{ $ordonnance->id }})">View</button>
                                                 <button class="btn btn-sm btn-primary" wire:click="editOrdonnance({{ $ordonnance->id }})">Edit</button>
                                                 <button class="btn btn-sm btn-danger" wire:click="deleteConfirmation({{ $ordonnance->id }})">Delete</button>
-                                            </td>
+                                            </td> --}}
 
                                         </tr>
                                     @endforeach
@@ -79,7 +79,7 @@
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title"> Add New Render-Vous</h5>
+                    <h5 class="modal-title"> Ajouter Nouvelle Ordonnance</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -90,7 +90,7 @@
                     <div class="d-flex">                           
                         <div class="form-group flex-grow-1 mr-2">
                             <label for="ordonnance_id">ID Ordonnance :</label>
-                            <input type="number" id="ordonnance_idnom" class="form-control" wire:model="ordonnance_id">
+                            <input type="number" id="ordonnance_id" class="form-control" wire:model="ordonnance_id">
                                 @error('ordonnance_id')
                                     <span class="text-danger" style="font-size: 11.5px;">{{ $message }}</span>
                                 @enderror
@@ -276,7 +276,7 @@
                         <div class="form-group row">
                             <label for="" class="col-3"></label>
                             <div class="col-9">
-                                <button type="submit" class="main_bt read_bt"><i class="fa fa-plus"></i><b style="font-weight:bold;"> Ajouter Ordonnance</b></button>
+                                <button type="submit" class="main_bt read_bt"><i class="fa fa-check"></i><b style="font-weight:bold;"> Enregistrer les Modifications</b></button>
                             </div>
                         </div>
    
@@ -320,7 +320,7 @@
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Ordonnance Information</h5>
+                    <h5 class="modal-title">Ordonnance Informations</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close" wire:click="closeViewOrdonnanceModal">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -366,21 +366,12 @@
                         </tbody>
                     </table>
                 </div>
-
             </div>
- 
         </div>
-
-    </div>
-                                    
-    
+    </div>   
 </div>
- 
-
 <!-- end view utilisateur-->
 </div>
-
-
 
 @push('scripts')
 

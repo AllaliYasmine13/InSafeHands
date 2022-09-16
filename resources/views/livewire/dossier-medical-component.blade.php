@@ -87,28 +87,47 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
-                </div>
+                </div> 
 
-                <div class="modal-body ">
-                <form wire:submit.prevent="storeDossierMedicalData" enctype="multipart/form-data">
-                    <div class="d-flex">                           
-                        <div class="form-group flex-grow-1 mr-2">
+            <div class="modal-body ">   
+                 <form wire:submit.prevent="storeDossierMedicalData" enctype="multipart/form-data">               
+                    
+                    <div class="d-flex">  
+
+                     <div class="p-4" >
+                            <div class="form-group flex-grow-1 mr-2">
+                                <label for="photo">Photo :</label>
+                                <input type="file" id="photo" wire:model="photo" >
+                                @error('photo')
+                                    <span class="text-danger" style="font-size: 11.5px;">{{ $message }}</span>
+                                @enderror
+                            </div>
+                                
+                            <div style="border: 1px solid #d0d1d3; border-radius: 20px; height: 200px; width:200px; overflow:hidden;">
+                               @if ($photo)       
+                                  <img src="{{ $photo->temporaryUrl() }}">
+                               @endif
+                            </div>                                
+                    </div>
+
+                        <div class="form-group flex-grow-1">
                             <label for="dossier_id">N° Dossier :</label>
                             <input type="number" id="dossier_id" class="form-control" wire:model="dossier_id">
                                 @error('dossier_id')
                                     <span class="text-danger" style="font-size: 11.5px;">{{ $message }}</span>
                                 @enderror
-                        </div>
-                        <div class="form-group flex-grow-1">
-                            <label class="custom-file-label" for="photo">Photo :</label>
-                            <input type="file" id="photo" class="custom-file-input" wire:model="photo">
+                        </div>   
+                        {{-- <div class="form-group flex-grow-1">
+                            <label for="photo">Photo :</label>
+                            <input type="file" id="photo" wire:model="photo">
                                 @error('photo')
                                     <span class="text-danger" style="font-size: 11.5px;">{{ $message }}</span>
                                 @enderror
-                        </div> 
+                            <button type="submit">Save Photo</button>
+                        </div>  --}}
                     </div>
-
-                    <div class="d-flex">                           
+                          
+                    <div class="d-flex">                                             
                         <div class="form-group flex-grow-1 mr-2">
                             <label for="nom">Nom :</label>
                             <input type="text" id="nom" class="form-control" wire:model="nom">
@@ -122,8 +141,8 @@
                                 @error('prenom')
                                     <span class="text-danger" style="font-size: 11.5px;">{{ $message }}</span>
                                 @enderror
-                        </div>
-                    </div>
+                        </div> 
+                    </div> 
 
                        <div class="d-flex">                           
                         <div class="form-group flex-grow-1 mr-2">
@@ -624,7 +643,7 @@
                         <div class="form-group row">
                             <label for="" class="col-3"></label>
                             <div class="col-9">
-                                <button type="submit" class="main_bt read_bt"><i class="fa fa-plus"></i><b style="font-weight:bold;"> Enregistrer Dossier</b></button>
+                                <button type="submit" class="main_bt read_bt"><i class="fa fa-check"></i><b style="font-weight:bold;"> Enregistrer Dossier</b></button>
                             </div>
                         </div>
                     </form>
